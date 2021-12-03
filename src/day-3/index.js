@@ -94,8 +94,7 @@ module.exports = class Day3 {
     const transposedInput = this.transposeArray(this.input)
     const gammaRate = this.getGammaRate(transposedInput);
     const epsilonRate = this.getEpsilonRate(gammaRate);
-    const result = Number.parseInt(gammaRate, 2) * Number.parseInt(epsilonRate, 2);
-    return result;
+    return parseInt(gammaRate, 2) * parseInt(epsilonRate, 2);
   }
 
   part2() {
