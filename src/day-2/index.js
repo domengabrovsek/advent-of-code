@@ -14,12 +14,6 @@ module.exports = class Day2 {
       .split('\n')
   }
 
-  reset() {
-    this.currentAim = 0;
-    this.currentPosition = 0;
-    this.currentDepth = 0;
-  }
-
   getPosition(part) {
     this.input.forEach(line => {
       const parts = line.split(' ');
