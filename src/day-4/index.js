@@ -64,7 +64,7 @@ module.exports = class Day3 {
     return false;
   }
 
-  part1(part) {
+  solve(part) {
 
     const winningBoards = [];
 
