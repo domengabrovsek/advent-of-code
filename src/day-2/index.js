@@ -1,4 +1,4 @@
-module.exports = class Day1 {
+module.exports = class Day2 {
 
   constructor(fileName) {
     this.input = this.readInput(fileName);
