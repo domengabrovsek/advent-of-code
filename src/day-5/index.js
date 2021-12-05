@@ -10,7 +10,7 @@ module.exports = class Day5 {
     const rawInput = require('fs')
       .readFileSync(fileName, { encoding: 'utf-8' })
       .split('\n')
-      .map(line => {
+      .map((line, index) => {
         const [x1, y1, x2, y2] = line
           .split('->')
           .join(',')
@@ -18,7 +18,7 @@ module.exports = class Day5 {
           .split(',')
           .map(x => parseInt(x));
 
-        return { x1, x2, y1, y2 };
+        return { x1, x2, y1, y2, index };
       })
 
     this.input = rawInput;
@@ -106,6 +106,23 @@ module.exports = class Day5 {
     return line.y1 === line.y2;
   }
 
+  intersects(line1, line2) {
+    const det = (line1.x2 - line1.x1) * (line2.y2 - line2.y1) - (line2.x2 - line2.x1) * (line1.y2 - line1.y1);
+
+    if (!det === 0) {
+      return false;
+    }
+
+    const lambda = ((line2.y2 - line2.y1) * (line2.x2 - line1.x1) + (line2.x1 - line2.x2) * (line2.y2 - line1.y1)) / det;
+    const gamma = ((line1.y1 - line1.y2) * (line2.x2 - line1.x1) + (line1.x2 - line1.x1) * (line2.y2 - line1.y1)) / det;
+
+    if ((0 < lambda && lambda < 1) && (0 < gamma && gamma < 1)) {
+      return [line1.index, line2.index].sort();
+    }
+
+    return false;
+  };
+
   solve(part) {
 
     // get all horizontal, vertical or diagonal lines
@@ -125,6 +142,17 @@ module.exports = class Day5 {
         overlappingPoints.push(point);
       }
     })
+
+    const intersections = filteredInput
+      .map(line1 => filteredInput
+        .map(line2 => this.intersects(line1, line2)))
+      .flatMap(x => x)
+      .filter(Boolean);
+
+    const uniqueIntersections = new Set(intersections.map(x => x.toString()));
+    console.log('intersections', uniqueIntersections);
+
+    console.log('points', new Set(overlappingPoints.map(x => x.toString())));
 
     const result = new Set(overlappingPoints.map(x => x.toString())).size;
 
