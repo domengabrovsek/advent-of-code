@@ -150,9 +150,9 @@ module.exports = class Day5 {
       .filter(Boolean);
 
     const uniqueIntersections = new Set(intersections.map(x => x.toString()));
-    console.log('intersections', uniqueIntersections);
+    // console.log('intersections', uniqueIntersections);
 
-    console.log('points', new Set(overlappingPoints.map(x => x.toString())));
+    // console.log('points', new Set(overlappingPoints.map(x => x.toString())));
 
     const result = new Set(overlappingPoints.map(x => x.toString())).size;
 
