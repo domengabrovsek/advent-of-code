@@ -1,4 +1,4 @@
-module.exports = class Day5 {
+module.exports = class Day6 {
 
   constructor(fileName) {
     this.parseInput(fileName);
