@@ -3,7 +3,7 @@ const Day9 = require('../index');
 describe('tests for day 9 challenge', () => {
 
   const testCases = [
-    { file: 'input.txt', expectedResult1: 528, expectedResult2: 1070188 },
+    { file: 'input.txt', expectedResult1: 528, expectedResult2: 920448 },
     { file: 'input-test.txt', expectedResult1: 15, expectedResult2: 1134 },
   ]
 
