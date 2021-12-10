@@ -1,10 +1,10 @@
-const Day9 = require('../index');
+const Day10 = require('../index');
 
-describe('tests for day 9 challenge', () => {
+describe('tests for day 10 challenge', () => {
 
   const testCases = [
-    { file: 'input.txt', expectedResult1: 366027, expectedResult2: 920448 },
-    { file: 'input-test.txt', expectedResult1: 26397, expectedResult2: 1134 },
+    { file: 'input.txt', expectedResult1: 366027, expectedResult2: 1118645287 },
+    { file: 'input-test.txt', expectedResult1: 26397, expectedResult2: 288957 },
   ]
 
   testCases.forEach(tc => {
@@ -15,11 +15,11 @@ describe('tests for day 9 challenge', () => {
 
       // act 
       const result1 = new Day9(inputFile).solve(1);
-      // const result2 = new Day9(inputFile).solve(2);
+      const result2 = new Day9(inputFile).solve(2);
 
       // assert
       expect(result1).toBe(tc.expectedResult1);
-      // expect(result2).toBe(tc.expectedResult2);
+      expect(result2).toBe(tc.expectedResult2);
     })
   })
 });
