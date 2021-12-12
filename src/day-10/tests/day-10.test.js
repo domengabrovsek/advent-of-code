@@ -14,8 +14,8 @@ describe('tests for day 10 challenge', () => {
       const inputFile = `${__dirname}/${tc.file}`;
 
       // act 
-      const result1 = new Day9(inputFile).solve(1);
-      const result2 = new Day9(inputFile).solve(2);
+      const result1 = new Day10(inputFile).solve(1);
+      const result2 = new Day10(inputFile).solve(2);
 
       // assert
       expect(result1).toBe(tc.expectedResult1);
