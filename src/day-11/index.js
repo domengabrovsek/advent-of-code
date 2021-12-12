@@ -44,79 +44,129 @@ module.exports = class Day10 {
     return adjacentOctopuses.filter(x => this.input?.[x[0]]?.[x[1]]);
   }
 
-  hasFlashed(octopus, flashedOctopuses) {
-    return !!flashedOctopuses.find(flaOct => flaOct[0] === octopus[0] && flaOct[1] === octopus[1]);
+  flashAndCount() {
+    let sum = 0;
+
+    for (let i = 0; i < this.input.length; i++) {
+      for (let j = 0; j < this.input[i].length; j++) {
+        if (this.input[i][j] > 9) {
+          sum += 1;
+          this.input[i][j] = 0;
+        }
+      }
+    }
+
+    return sum;
+  }
+
+  allFlashed() {
+    let totalFlashes = 0;
+
+    for (let i = 0; i < this.input.length; i++) {
+      for (let j = 0; j < this.input[i].length; j++) {
+        if (this.input[i][j] > 9) {
+          totalFlashes++;
+          this.input[i][j] = 0;
+        }
+      }
+    }
+
+    const totalOctopuses = this.input.length * this.input[0].length;
+
+    return totalFlashes === totalOctopuses;
   }
 
   solve(part) {
 
-    let steps = 2;
-    let totalFlashes = 0;
+    if (part === 1) {
+      let totalSteps = 100;
+      let totalFlashes = 0;
 
-    console.table(this.input)
+      // iterate through steps
+      for (let step = 1; step <= totalSteps; step++) {
 
-    // simulate 100 steps
-    for (let step = 1; step <= steps; step++) {
+        let stack = [];
 
-      const flashedOctopuses = [];
+        for (let i = 0; i < this.input.length; i++) {
+          for (let j = 0; j < this.input[i].length; j++) {
 
-      for (let i = 0; i < this.input.length; i++) {
-        for (let j = 0; j < this.input[i].length; j++) {
-
-          // First, the energy level of each octopus increases by 1.
-          if (!this.hasFlashed([i, j], flashedOctopuses)) {
+            // increase all by 1
             this.input[i][j] += 1;
-          }
 
-          const toCheck = [[i, j]];
-
-          while (true) {
-
-            if (toCheck.length === 0) {
-              break;
-            }
-
-            const [x, y] = toCheck.pop();
-            const value = this.input[x][y];
-
-            // if energy level higher than 9
-            if (value > 9) {
-
-              // reset energy level to 0
-              this.input[x][y] = 0;
-
-              // mark it as already flashed
-              flashedOctopuses.push([x, y]);
-
-              // increase number of total flashes
-              totalFlashes++;
-
-              // increase energy level by 1 for all adjacent ones
-              this.getAdjacentOctopuses(x, y).forEach(adjOct => {
-                const [a, b] = adjOct;
-
-                if (!this.hasFlashed(adjOct, flashedOctopuses)) {
-                  this.input[a][b] += 1
-
-                  if(this.input[a][b] > 9) {
-                    toCheck.push(adjOct);
-                  }
-                }
-              })
-
-            } else {
-              break;
+            // push octopuses which should flash to stack
+            if (this.input[i][j] > 9) {
+              stack.push([i, j])
             }
           }
         }
+
+        // iterate until all that should flashed have flashed
+        while (stack.length > 0) {
+
+          const [x, y] = stack.shift();
+
+          // get all adjacent
+          const adjacentOctopuses = this.getAdjacentOctopuses(x, y);
+
+          // increase all adjacent by 1 and push the ones to flash to stack
+          for (const oct of adjacentOctopuses) {
+            this.input[oct[0]][oct[1]] += 1;
+            if (this.input[oct[0]][oct[1]] === 10) {
+              stack.push([oct[0], oct[1]]);
+            }
+          }
+        }
+
+        // flash the ones who have energy over 9 and count them
+        totalFlashes += this.flashAndCount();
       }
 
-      // Then, any octopus with an energy level greater than 9 flashes. This increases the energy level of all adjacent octopuses by 1, including octopuses that are diagonally adjacent. If this causes an octopus to have an energy level greater than 9, it also flashes. This process continues as long as new octopuses keep having their energy level increased beyond 9. (An octopus can only flash at most once per step.)
-      // Finally, any octopus that flashed during this step has its energy level set to 0, as it used all of its energy to flash.
-      console.table(this.input)
+      return totalFlashes;
     }
 
-    console.log(totalFlashes);
+    if (part === 2) {
+      let totalSteps = 0;
 
+      // iterate until all octopuses flash
+      while (true) {
+        let stack = [];
+
+        for (let i = 0; i < this.input.length; i++) {
+          for (let j = 0; j < this.input[i].length; j++) {
+
+            // increase all by 1
+            this.input[i][j] += 1;
+
+            // push octopuses which should flash to stack
+            if (this.input[i][j] > 9) {
+              stack.push([i, j])
+            }
+          }
+        }
+
+        // iterate until all that should flashed have flashed
+        while (stack.length > 0) {
+
+          const [x, y] = stack.shift();
+
+          // get all adjacent
+          const adjacentOctopuses = this.getAdjacentOctopuses(x, y);
+
+          // increase all adjacent by 1 and push the ones to flash to stack
+          for (const oct of adjacentOctopuses) {
+            this.input[oct[0]][oct[1]] += 1;
+            if (this.input[oct[0]][oct[1]] === 10) {
+              stack.push([oct[0], oct[1]]);
+            }
+          }
+        }
+
+        totalSteps += 1;
+        if (this.allFlashed()) {
+          return totalSteps;
+        }
+      }
+    }
   }
 }
+
