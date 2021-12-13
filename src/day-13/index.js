@@ -1,3 +1,5 @@
+const { parentPort } = require('worker_threads');
+
 module.exports = class Day10 {
 
   constructor(fileName) {
@@ -106,10 +108,20 @@ module.exports = class Day10 {
       }
     }
 
+
+    // make the output a bit more eye friendly
+    for(let i = 0; i < paper.length; i++) {
+      for(let j = 0; j < paper[0].length; j++) {
+        if(paper[i][j] === '.') {
+          paper[i][j] = '';
+        } else {
+          paper[i][j] = 'X';
+        }
+      }
+    }
+
+    // reads as ABKJFBGC
     console.table(paper);
-
-
-
   }
 }
 

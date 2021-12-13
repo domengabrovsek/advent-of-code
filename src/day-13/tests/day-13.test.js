@@ -1,4 +1,4 @@
-const Day11 = require('../index');
+const Day13 = require('../index');
 
 describe('tests for day 13 challenge', () => {
 
@@ -14,12 +14,11 @@ describe('tests for day 13 challenge', () => {
       const inputFile = `${__dirname}/${tc.file}`;
 
       // act 
-      const result1 = new Day11(inputFile).solve(1);
-      // const result2 = new Day11(inputFile).solve(2);
+      const result1 = new Day13(inputFile).solve(1);
+      new Day13(inputFile).solve(2);
 
       // assert
       expect(result1).toBe(tc.expectedResult1);
-      // expect(result2).toBe(tc.expectedResult2);
     })
   })
 });
