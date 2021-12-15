@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 module.exports = class Day9 {
 
   constructor(fileName) {
@@ -5,12 +6,12 @@ module.exports = class Day9 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     this.input =
       require('fs')
         .readFileSync(fileName, { encoding: 'utf-8' })
         .split('\n')
-        .map(x => x.split('').map(Number))
+        .map(x => x.split('').map(Number));
   }
 
   getLowPoints() {
@@ -46,10 +47,10 @@ module.exports = class Day9 {
     }
 
     if (part === 2) {
-      let basins = lowPoints.map(x => []);
+      const basins = lowPoints.map(() => []);
       lowPoints.forEach((lowPoint, basin) => {
 
-        let stack = [[lowPoint.i, lowPoint.j]];
+        const stack = [[lowPoint.i, lowPoint.j]];
 
         while (true) {
 
@@ -81,7 +82,7 @@ module.exports = class Day9 {
             }
 
             // right
-            const right = this.input?.[current[0]]?.[current[1] + 1]
+            const right = this.input?.[current[0]]?.[current[1] + 1];
             if (right && right !== 9) {
 
               // add only if it doesnt exist yet
@@ -91,7 +92,7 @@ module.exports = class Day9 {
             }
 
             // top
-            const top = this.input?.[current[0] - 1]?.[current[1]]
+            const top = this.input?.[current[0] - 1]?.[current[1]];
             if (top && top !== 9) {
 
               // add only if it doesnt exist yet
@@ -101,7 +102,7 @@ module.exports = class Day9 {
             }
 
             // bottom
-            const bottom = this.input?.[current[0] + 1]?.[current[1]]
+            const bottom = this.input?.[current[0] + 1]?.[current[1]];
             if (bottom && bottom !== 9) {
 
               // add only if it doesnt exist yet
@@ -111,7 +112,7 @@ module.exports = class Day9 {
             }
           }
         }
-      })
+      });
 
       const basinSizes = basins
         .map(x => parseInt(x.length))
@@ -122,4 +123,4 @@ module.exports = class Day9 {
       return basinSizes[basinsLength - 1] * basinSizes[basinsLength - 2] * basinSizes[basinsLength - 3];
     }
   }
-}
+};

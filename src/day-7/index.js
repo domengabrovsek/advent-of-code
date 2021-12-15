@@ -5,7 +5,7 @@ module.exports = class Day7 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     this.input =
       require('fs')
         .readFileSync(fileName, { encoding: 'utf-8' })
@@ -15,9 +15,9 @@ module.exports = class Day7 {
 
   stepCost(position, number, part) {
 
-    let cost = Math.abs(position - number);
+    const cost = Math.abs(position - number);
 
-    if (part === 1) return cost;
+    if (part === 1) { return cost; }
 
     let sum = 0;
 
@@ -33,7 +33,7 @@ module.exports = class Day7 {
     const max = Math.max(...inputNumbers);
     const min = Math.min(...inputNumbers);
 
-    let numbers = [];
+    const numbers = [];
     for (let i = min; i <= max; i++) {
       numbers.push(i);
     }
@@ -48,4 +48,4 @@ module.exports = class Day7 {
           .reduce((x, y) => x + y, 0))
       );
   }
-}
+};

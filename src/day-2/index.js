@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 module.exports = class Day2 {
 
   constructor(fileName) {
@@ -8,10 +9,10 @@ module.exports = class Day2 {
   }
 
   readInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     return require('fs')
       .readFileSync(fileName, { encoding: 'utf-8' })
-      .split('\n')
+      .split('\n');
   }
 
   getPosition(part) {
@@ -43,8 +44,8 @@ module.exports = class Day2 {
           break;
         }
       }
-    })
+    });
 
     return this.currentDepth * this.currentPosition;
   }
-}
+};

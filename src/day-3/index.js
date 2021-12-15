@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 module.exports = class Day3 {
 
   constructor(fileName) {
@@ -5,11 +6,11 @@ module.exports = class Day3 {
   }
 
   readInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     return require('fs')
       .readFileSync(fileName, { encoding: 'utf-8' })
       .split('\n')
-      .map(x => x.split(''))
+      .map(x => x.split(''));
   }
 
   transposeArray(array) {
@@ -18,10 +19,13 @@ module.exports = class Day3 {
 
   getEpsilonRate(gammaRate) {
     const flippedBits = gammaRate.split('').map(bit => {
-      if (bit === '1') bit = '0';
-      else if (bit === '0') bit = '1';
 
-      return bit;
+      let res;
+
+      if (bit === '1') { res = '0'; }
+      else if (bit === '0') { res = '1'; }
+
+      return res;
     })
       .join('');
 
@@ -37,29 +41,29 @@ module.exports = class Day3 {
 
       gammaRate += ones > zeros
         ? '1'
-        : '0'
-    })
+        : '0';
+    });
 
     return gammaRate;
   }
 
   getLeastCommonBit(input, column) {
-    const bits = this.transposeArray(input)[column]
+    const bits = this.transposeArray(input)[column];
     const ones = bits.filter(bit => bit === '1').length;
     const zeros = bits.filter(bit => bit === '0').length;
 
-    if (ones > zeros) return '0';
-    if (zeros > ones) return '1';
+    if (ones > zeros) { return '0'; }
+    if (zeros > ones) { return '1'; }
     return '0';
   }
 
   getMostCommonBit(input, column) {
-    const bits = this.transposeArray(input)[column]
+    const bits = this.transposeArray(input)[column];
     const ones = bits.filter(bit => bit === '1').length;
     const zeros = bits.filter(bit => bit === '0').length;
 
-    if (ones > zeros) return '1';
-    if (zeros > ones) return '0';
+    if (ones > zeros) { return '1'; }
+    if (zeros > ones) { return '0'; }
     return '1';
   }
 
@@ -91,7 +95,7 @@ module.exports = class Day3 {
   }
 
   part1() {
-    const transposedInput = this.transposeArray(this.input)
+    const transposedInput = this.transposeArray(this.input);
     const gammaRate = this.getGammaRate(transposedInput);
     const epsilonRate = this.getEpsilonRate(gammaRate);
     return parseInt(gammaRate, 2) * parseInt(epsilonRate, 2);
@@ -103,4 +107,4 @@ module.exports = class Day3 {
     return parseInt(oxGenRate) * parseInt(CO2ScrubRate);
   }
 
-}
+};

@@ -5,12 +5,12 @@ module.exports = class Day14 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
 
     const rows = require('fs')
       .readFileSync(fileName, { encoding: 'utf-8' })
       .split('\n')
-      .filter(Boolean)
+      .filter(Boolean);
 
     this.template = rows.shift();
     this.dict = Object.fromEntries(rows.map(row => row.split(' -> ')));
@@ -21,11 +21,11 @@ module.exports = class Day14 {
     // get a list of unique elements
     const uniqueElements = [...new Set(Object.keys(pairs).flatMap(x => x.split('')))];
 
-    let elements = {};
+    const elements = {};
 
     uniqueElements.forEach(x => {
       elements[x] = 0;
-    })
+    });
 
     // count number of specific element
     for (const pair of Object.keys(pairs)) {
@@ -36,7 +36,7 @@ module.exports = class Day14 {
 
     // round them up in case of floats
     for (const x of Object.keys(elements)) {
-      elements[x] = Math.round(elements[x])
+      elements[x] = Math.round(elements[x]);
     }
 
     // get most and least common elements
@@ -64,7 +64,7 @@ module.exports = class Day14 {
   }
 
   getInitialPairs(template) {
-    let pairs = {};
+    const pairs = {};
 
     for (let i = 0; i < template.length - 1; i++) {
       const pair = template.substr(i, 2);
@@ -96,7 +96,7 @@ module.exports = class Day14 {
 
     // part 1 has 10 steps
     // part 2 has 40 steps
-    let steps = part === 1 ? 10 : 40;
+    const steps = part === 1 ? 10 : 40;
 
     for (let i = 0; i < steps; i++) {
       pairs = this.getNewPairs(pairs, mapInstructions);
@@ -107,4 +107,4 @@ module.exports = class Day14 {
 
     return mostCommon - leastCommon;
   }
-}
+};

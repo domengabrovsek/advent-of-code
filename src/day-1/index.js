@@ -5,7 +5,7 @@ module.exports = class Day1 {
   }
 
   readInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     return require('fs').readFileSync(fileName, { encoding: 'utf-8' }).split('\n').map(number => parseInt(number));
   }
 
@@ -33,4 +33,4 @@ module.exports = class Day1 {
 
     return numberOfIncreases;
   }
-}
+};

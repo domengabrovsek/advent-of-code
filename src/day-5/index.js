@@ -5,7 +5,7 @@ module.exports = class Day5 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
 
     const rawInput = require('fs')
       .readFileSync(fileName, { encoding: 'utf-8' })
@@ -19,7 +19,7 @@ module.exports = class Day5 {
           .map(x => parseInt(x));
 
         return { x1, x2, y1, y2, index };
-      })
+      });
 
     this.input = rawInput;
   }
@@ -54,7 +54,7 @@ module.exports = class Day5 {
       if (x1 > x2 && y1 > y2) {
         let i = x2, j = y2;
         while (i <= x1) {
-          points.push([i, j])
+          points.push([i, j]);
           i++; j++;
         }
       }
@@ -72,7 +72,7 @@ module.exports = class Day5 {
       else if (x1 < x2 && y1 > y2) {
         let i = x2, j = y2;
         while (i >= x1) {
-          points.push([i, j])
+          points.push([i, j]);
           i--; j++;
         }
       }
@@ -81,7 +81,7 @@ module.exports = class Day5 {
       else if (x1 > x2 && y1 < y2) {
         let i = x1, j = y1;
         while (i >= x2) {
-          points.push([i, j])
+          points.push([i, j]);
           i--; j++;
         }
       }
@@ -99,7 +99,7 @@ module.exports = class Day5 {
   }
 
   isHorizontal(line) {
-    return line.x1 === line.x2
+    return line.x1 === line.x2;
   }
 
   isVertical(line) {
@@ -121,7 +121,7 @@ module.exports = class Day5 {
     }
 
     return false;
-  };
+  }
 
   solve(part) {
 
@@ -133,7 +133,7 @@ module.exports = class Day5 {
     // flatten all arrays to one
     const points = filteredInput.map(line => this.getPointsFromEntry(line)).flatMap(x => x);
 
-    let overlappingPoints = [];
+    const overlappingPoints = [];
 
     points.forEach(point => {
       const numberOfSamePoints = points.filter(x => this.isSameArray(x, point)).length;
@@ -141,18 +141,7 @@ module.exports = class Day5 {
       if (numberOfSamePoints > 1) {
         overlappingPoints.push(point);
       }
-    })
-
-    const intersections = filteredInput
-      .map(line1 => filteredInput
-        .map(line2 => this.intersects(line1, line2)))
-      .flatMap(x => x)
-      .filter(Boolean);
-
-    const uniqueIntersections = new Set(intersections.map(x => x.toString()));
-    // console.log('intersections', uniqueIntersections);
-
-    // console.log('points', new Set(overlappingPoints.map(x => x.toString())));
+    });
 
     const result = new Set(overlappingPoints.map(x => x.toString())).size;
 
@@ -161,4 +150,4 @@ module.exports = class Day5 {
     // 7267
     // 14677
   }
-}
+};

@@ -5,7 +5,7 @@ module.exports = class Day10 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     this.input =
       require('fs')
         .readFileSync(fileName, { encoding: 'utf-8' })
@@ -48,17 +48,17 @@ module.exports = class Day10 {
         ']': 2,
         '}': 3,
         '>': 4
-      }
+      };
 
-    let illegalCharsFound = [];
-    let corruptedLines = [];
-    let missingPieces = [];
+    const illegalCharsFound = [];
+    const corruptedLines = [];
+    const missingPieces = [];
 
     for (const [index, line] of this.input.entries()) {
       let stack = [line[0]];
 
       for (const char of line.split('')) {
-        let previous = stack?.[stack.length - 1];
+        const previous = stack?.[stack.length - 1];
 
         // add opening parenthesis to stack
         if (['{', '(', '[', '<'].includes(char)) {
@@ -66,31 +66,29 @@ module.exports = class Day10 {
         }
 
         // logic for closing parenthesis
-        else {
+        // if opening doesn't match closing it's illegal
+        // save illegal character and corrupted line and stop
+        else if ((previous === '{' && char !== '}') ||
+          (previous === '<' && char !== '>') ||
+          (previous === '(' && char !== ')') ||
+          (previous === '[' && char !== ']')) {
 
-          // if opening doesn't match closing it's illegal
-          // save illegal character and corrupted line and stop
-          if ((previous === '{' && char !== '}') ||
-            (previous === '<' && char !== '>') ||
-            (previous === '(' && char !== ')') ||
-            (previous === '[' && char !== ']')) {
-            illegalCharsFound.push(char);
-            corruptedLines.push(index);
-            stack = [];
-            break;
-          } 
-          // if opening and closing parenthesis match, just continue
-          else {
-            stack.pop();
-          }
+          illegalCharsFound.push(char);
+          corruptedLines.push(index);
+          stack = [];
+          break;
+        }
+        // if opening and closing parenthesis match, just continue
+        else {
+          stack.pop();
         }
       }
 
-      // save the remaining elements of stack map them to 
+      // save the remaining elements of stack map them to
       // get missing pieces for incomplete lines
       if (stack?.length > 0) {
         stack = stack.reverse();
-        stack.pop()
+        stack.pop();
         missingPieces.push(stack.map(x => this.mapChar(x)));
       }
     }
@@ -107,6 +105,6 @@ module.exports = class Day10 {
       return this.median(missingPieces
         .map(line => line
           .reduce((sum, char) => (sum * 5) + scoringDict[char], 0)));
-    };
+    }
   }
-}
+};

@@ -1,11 +1,11 @@
-module.exports = class Day10 {
+module.exports = class Day11 {
 
   constructor(fileName) {
     this.parseInput(fileName);
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     this.input =
       require('fs')
         .readFileSync(fileName, { encoding: 'utf-8' })
@@ -79,13 +79,13 @@ module.exports = class Day10 {
   solve(part) {
 
     if (part === 1) {
-      let totalSteps = 100;
+      const totalSteps = 100;
       let totalFlashes = 0;
 
       // iterate through steps
       for (let step = 1; step <= totalSteps; step++) {
 
-        let stack = [];
+        const stack = [];
 
         for (let i = 0; i < this.input.length; i++) {
           for (let j = 0; j < this.input[i].length; j++) {
@@ -95,7 +95,7 @@ module.exports = class Day10 {
 
             // push octopuses which should flash to stack
             if (this.input[i][j] > 9) {
-              stack.push([i, j])
+              stack.push([i, j]);
             }
           }
         }
@@ -128,8 +128,8 @@ module.exports = class Day10 {
       let totalSteps = 0;
 
       // iterate until all octopuses flash
-      while (true) {
-        let stack = [];
+      while (!this.allFlashed()) {
+        const stack = [];
 
         for (let i = 0; i < this.input.length; i++) {
           for (let j = 0; j < this.input[i].length; j++) {
@@ -139,7 +139,7 @@ module.exports = class Day10 {
 
             // push octopuses which should flash to stack
             if (this.input[i][j] > 9) {
-              stack.push([i, j])
+              stack.push([i, j]);
             }
           }
         }
@@ -168,5 +168,5 @@ module.exports = class Day10 {
       }
     }
   }
-}
+};
 

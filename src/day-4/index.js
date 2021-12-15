@@ -7,7 +7,7 @@ module.exports = class Day3 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
 
     const rawInput = require('fs')
       .readFileSync(fileName, { encoding: 'utf-8' })
@@ -21,7 +21,7 @@ module.exports = class Day3 {
     for (let i = 0; i < rawInput.length; i++) {
 
       // transform current line to array of numbers
-      const currentLine = rawInput[i].split(' ').filter(Boolean).map(x => parseInt(x))
+      const currentLine = rawInput[i].split(' ').filter(Boolean).map(x => parseInt(x));
 
       // if current line has numbers
       if (currentLine.length === 5) {
@@ -106,4 +106,4 @@ module.exports = class Day3 {
 
     return sumOfUnmarkedNumbers * guess;
   }
-}
+};

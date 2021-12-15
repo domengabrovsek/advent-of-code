@@ -5,7 +5,7 @@ module.exports = class Day8 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
+    if (!fileName) { return; }
     this.input =
       require('fs')
         .readFileSync(fileName, { encoding: 'utf-8' })
@@ -18,10 +18,10 @@ module.exports = class Day8 {
 
   decodeDigit(digit) {
 
-    if (digit.length === 7) return 8;
-    if (digit.length === 4) return 4;
-    if (digit.length === 3) return 7;
-    if (digit.length === 2) return 1;
+    if (digit.length === 7) { return 8; }
+    if (digit.length === 4) { return 4; }
+    if (digit.length === 3) { return 7; }
+    if (digit.length === 2) { return 1; }
 
     const enabledParts = digit.split('').map(part => this.instructions[part]).sort().join('');
 
@@ -63,7 +63,7 @@ module.exports = class Day8 {
     //  gggg    gggg    ....    gggg    gggg
 
     const instructions = input.split(' ');
-    const dict = {}
+    const dict = {};
 
     let key;
 
@@ -97,7 +97,7 @@ module.exports = class Day8 {
 
     // 0
     key = seven.split('')
-      .filter(x => !one.includes(x))[0] // exclude all from 1
+      .filter(x => !one.includes(x))[0]; // exclude all from 1
     dict[key] = 0;
 
     // 6
@@ -166,9 +166,9 @@ module.exports = class Day8 {
 
         // decode the digits and add it to sum
         sum += parseInt(this.decodeDigits(right));
-      })
+      });
 
       return sum;
     }
   }
-}
+};

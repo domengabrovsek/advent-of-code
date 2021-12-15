@@ -5,8 +5,8 @@ module.exports = class Day6 {
   }
 
   parseInput(fileName) {
-    if (!fileName) return;
-    this.input = require('fs').readFileSync(fileName, { encoding: 'utf-8' })
+    if (!fileName) { return; }
+    this.input = require('fs').readFileSync(fileName, { encoding: 'utf-8' });
   }
 
   solve(part) {
@@ -33,7 +33,7 @@ module.exports = class Day6 {
 
       // remove level 0 fish
       if (fishArray[0]) {
-        fishArray[0] = 0
+        fishArray[0] = 0;
       }
 
       // simulate fish reproduction
@@ -52,4 +52,4 @@ module.exports = class Day6 {
     // sum all the fish
     return fishArray.reduce((x, y) => x + y, 0);
   }
-}
+};
