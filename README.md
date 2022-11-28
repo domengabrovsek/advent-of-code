@@ -1,11 +1,17 @@
-#
+## 🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄
+
+![logo](./img/aoc.jpeg)
 
 ## 🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄
 
-![logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2021/master/header.png)
+## Solutions for Advent of Code puzzles by [Domen Gabrovšek](https://www.github.com/domengabrovsek).
 
-## 🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄
+## Get started
 
-## Solutions for [puzzles](https://adventofcode.com) written in  ![jslogo](./javascript.png).
+```js
+// init template source file for specified year
+~ npm run init [year] // npm run init 2022
 
-## Author: [Domen Gabrovšek](https://www.github.com/domengabrovsek)
+// run solution for specific year and day (inputs are fetched and saved automatically)
+~ npm run [year] [day] // npm run 2022 1
+```

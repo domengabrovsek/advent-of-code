@@ -5,7 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest -t",
-    "lint": "eslint . --max-warnings 0 --fix"
+    "lint": "eslint . --max-warnings 0 --fix",
+    "init": "ts-node src/utils/init",
+    "2018": "ts-node src/2018/index",
+    "2019": "ts-node src/2019/index",
+    "2020": "ts-node src/2020/index",
+    "2021": "ts-node src/2021/index",
+    "2022": "ts-node src/2022/index"
   },
   "repository": {
     "type": "git",
@@ -18,12 +24,19 @@
     "url": "https://github.com/domengabrovsek/advent-of-code-2021/issues"
   },
   "homepage": "https://github.com/domengabrovsek/advent-of-code-2021#readme",
-  "dependencies": {
+  "devDependencies": {
+    "@types/lodash": "^4.14.190",
+    "dotenv": "^16.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "jest": "^27.4.2"
+    "jest": "^27.4.2",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "typescript": "^4.9.3"
   }
 }
