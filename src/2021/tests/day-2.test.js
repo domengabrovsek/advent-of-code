@@ -1,4 +1,4 @@
-const Day2 = require('../index');
+const Day2 = require('../solutions/day2');
 
 describe('tests for day 2 challenge', () => {
 
