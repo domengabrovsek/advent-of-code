@@ -1,21 +1,26 @@
 // setup env variables
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const fs = require('fs');
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
-const getInput = async (year, day) => {
+export const getInput = async (year: number, day: number) => {
+
+  const INPUTS_FOLDER = `./src/${year}/inputs`;
 
   console.log('Fetching input ...');
 
   // create inputs folder if it doesn't exist yet
-  if (!fs.existsSync(`src/${year}/inputs`)) {
-    fs.mkdirSync(`src/${year}/inputs`);
+  if (!existsSync(INPUTS_FOLDER)) {
+    mkdirSync(INPUTS_FOLDER);
   }
 
+  console.log(`${INPUTS_FOLDER}/day-${day}.txt`);
+
   // read input from file if it exists
-  if (fs.existsSync(`src/${year}/inputs/day-${day}.txt`)) {
+  if (existsSync(`${INPUTS_FOLDER}/day-${day}.txt`)) {
     console.log('Found cached input! Returning it.');
-    return fs.readFileSync(`src/${year}/inputs/day-${day}.txt`);
+    return readFileSync(`${INPUTS_FOLDER}/day-${day}.txt`, { encoding: 'utf-8' });
   }
 
   console.log('No cached input found, fetching it from AoC API ...')
@@ -42,7 +47,7 @@ const getInput = async (year, day) => {
 
     // save it to file for future use
     console.log('Saving input to file ...');
-    fs.writeFileSync(`src/${year}/inputs/day-${day}.txt`, input, { encoding: 'utf-8' });
+    writeFileSync(`src/${year}/inputs/day-${day}.txt`, input, { encoding: 'utf-8' });
     console.log('Input saved to file. Returning it.');
 
     return input;
@@ -51,7 +56,7 @@ const getInput = async (year, day) => {
   throw new Error(JSON.stringify({ status: result.status, error: result.statusText }));
 };
 
-const getAllInputs = async (year) => {
+export const getAllInputs = async (year: number) => {
 
   const promises = [];
 
@@ -61,5 +66,3 @@ const getAllInputs = async (year) => {
 
   await Promise.all(promises);
 };
-
-module.exports = { getInput, getAllInputs };
