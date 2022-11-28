@@ -62,6 +62,4 @@ const getAllInputs = async (year) => {
   await Promise.all(promises);
 };
 
-getAllInputs(2020);
-
 module.exports = { getInput, getAllInputs };
