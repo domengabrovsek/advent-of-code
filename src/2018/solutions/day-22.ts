@@ -1,7 +1,6 @@
 /* This file contains solution for AoC puzzle day 22 */
 
-import { getInput } from "../../utils/inputs";
-import { getYear, getDay } from '../../utils/utils';
+import { getYear, getDay, getInput } from '../../utils/utils';
 
 export const solveOne = async () => {
 
