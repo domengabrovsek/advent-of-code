@@ -4,4 +4,4 @@
 
 ## 🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄🎁🎄
 
-## Author: [Domen Gabrovšek](https://www.github.com/domengabrovsek)
+## Solutions for Advent of Code puzzles by [Domen Gabrovšek](https://www.github.com/domengabrovsek).
