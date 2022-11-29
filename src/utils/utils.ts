@@ -8,7 +8,7 @@ export const deepCopy = (obj: object) => obj && JSON.parse(JSON.stringify(obj));
 
 export const getYear = (filename: string) => Number(filename.split('/')[6]);
 
-export const getDay = (filename: string) => Number(filename.split('/')[8].split('-')[1].match(/\d/)[0]);
+export const getDay = (filename: string) => Number(filename.split('/')[8].split('-')[1].match(/\d{1,2}/)[0]);
 
 export const getSourceTemplate = (day: number) => `/* This file contains solution for AoC puzzle day ${day} */
 
