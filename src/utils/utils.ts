@@ -110,22 +110,30 @@ export const getInput = async (year: number, day: number) => {
 
   const INPUTS_FOLDER = `./src/${year}/inputs`;
 
-  console.log('Fetching input ...');
+  if (process.env.LOGGING === 'true') {
+    console.log('Fetching input ...');
+  }
 
   // create inputs folder if it doesn't exist yet
   if (!existsSync(INPUTS_FOLDER)) {
     mkdirSync(INPUTS_FOLDER);
   }
 
-  console.log(`${INPUTS_FOLDER}/day-${day}.txt`);
+  if (process.env.LOGGING === 'true') {
+    console.log(`${INPUTS_FOLDER}/day-${day}.txt`);
+  }
 
   // read input from file if it exists
   if (existsSync(`${INPUTS_FOLDER}/day-${day}.txt`)) {
-    console.log('Found cached input! Returning it.');
+    if (process.env.LOGGING === 'true') {
+      console.log('Found cached input! Returning it.');
+    }
     return readFileSync(`${INPUTS_FOLDER}/day-${day}.txt`, { encoding: 'utf-8' });
   }
 
-  console.log('No cached input found, fetching it from AoC API ...')
+  if (process.env.LOGGING === 'true') {
+    console.log('No cached input found, fetching it from AoC API ...')
+  }
 
   const token = process.env.TOKEN;
   const uri = `https://adventofcode.com/${year}/day/${day}/input`;

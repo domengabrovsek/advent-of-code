@@ -7,11 +7,11 @@
     "test": "jest -t",
     "lint": "eslint . --max-warnings 0 --fix",
     "init": "ts-node src/utils/init",
-    "2018": "ts-node src/2018/index",
-    "2019": "ts-node src/2019/index",
-    "2020": "ts-node src/2020/index",
-    "2021": "ts-node src/2021/index",
-    "2022": "ts-node src/2022/index"
+    "2018": "nodemon src/2018/index.ts",
+    "2019": "nodemon src/2019/index.ts",
+    "2020": "nodemon src/2020/index.ts",
+    "2021": "nodemon src/2021/index.ts",
+    "2022": "nodemon src/2022/index.ts"
   },
   "repository": {
     "type": "git",
