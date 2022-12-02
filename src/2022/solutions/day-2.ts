@@ -46,7 +46,7 @@ export const solveTwo = async () => {
 
   return input.split('\n').reduce((sum, row) => {
     const myMove = nextMove[row.split(' ').join('')];
-    const play = `${row[0]}${myMove}`
-    return sum + score[play]
+    const play = `${row[0]}${myMove}`;
+    return sum + score[play];
   }, 0);
 }
