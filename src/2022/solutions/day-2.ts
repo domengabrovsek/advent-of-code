@@ -36,26 +36,17 @@ export const solveOne = async () => {
 
   // raw input
   const input = await getInput(getYear(__filename), getDay(__filename));
-  const parsedInput = input.split('\n');
-
-  let sum = 0;
-  parsedInput.forEach(row => sum += score[row.split(' ').join('')]);
-  return sum;
+  return input.split('\n').reduce((sum, row) => sum + score[row.split(' ').join('')], 0);
 }
 
 export const solveTwo = async () => {
 
   // raw input
   const input = await getInput(getYear(__filename), getDay(__filename));
-  const parsedInput = input.split('\n');
 
-  let sum = 0;
-
-  parsedInput.forEach(row => {
+  return input.split('\n').reduce((sum, row) => {
     const myMove = nextMove[row.split(' ').join('')];
     const play = `${row[0]}${myMove}`
-    sum += score[play];
-  })
-
-  return sum;
+    return sum + score[play]
+  }, 0);
 }
