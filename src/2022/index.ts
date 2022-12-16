@@ -64,6 +64,7 @@ if (!day || day < 1 || day > 25) {
 }
 
 (async () => {
+  console.clear();
   const resultOne = await dict[day].solveOne();
   const resultTwo = await dict[day].solveTwo();
 
