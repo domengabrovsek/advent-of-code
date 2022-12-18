@@ -6,7 +6,7 @@
 
 ## Solutions for Advent of Code puzzles by [Domen Gabrovšek](https://www.github.com/domengabrovsek).
 
-![](https://img.shields.io/badge/2022%20⭐-28/50-blue) 
+![](https://img.shields.io/badge/2022%20⭐-30/50-blue) 
 ![](https://img.shields.io/badge/2021%20⭐-30/50-green) 
 ![](https://img.shields.io/badge/2020%20⭐-27/50-red) 
 ![](https://img.shields.io/badge/2019%20⭐-8/50-purple) 
