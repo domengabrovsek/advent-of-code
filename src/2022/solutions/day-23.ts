@@ -1,143 +1,64 @@
 /* This file contains solution for AoC puzzle day 23 */
 
 import { getYear, getDay, getInput } from '../../utils/utils';
+import { initGrid, Direction, Grid, getNeighbours, getCoordinate, extractCoordinates } from '../../utils/grid';
 
-type Direction = 'N' | 'S' | 'E' | 'W' | 'NE' | 'NW' | 'SE' | 'SW';
-type Grid = string[][];
-type Elf = { x: number, y: number, direction?: Direction };
+const getElvesCoordinates = (input: string) => initGrid(input, '#');
 
-const initGrid = (input: string) => {
+const getNumberOfEmptySpaces = (grid: Grid) => {
 
-  const rows = input.split('\n');
-  const grid: Grid = [];
+  let minX = Number.MAX_SAFE_INTEGER;
+  let maxX = Number.MIN_SAFE_INTEGER;
+  let minY = Number.MAX_SAFE_INTEGER;
+  let maxY = Number.MIN_SAFE_INTEGER;
 
-  let size = 1000;
+  grid.forEach((val, key) => {
+    const { x, y } = extractCoordinates(key);
+    if (minX > x) { minX = x };
+    if (maxX < x) { maxX = x };
+    if (minY > y) { minY = y };
+    if (maxY < y) { maxY = y };
+  })
 
-  // empty grid
-  for (let i = 0; i < size; i++) {
-    grid[i] = [];
-    for (let j = 0; j < size; j++) {
-      grid[i][j] = '.';
-    }
-  }
+  const x = maxX - minX;
+  const y = maxY - minY;
 
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      if (rows?.[i]?.[j]) {
-        grid[i + size / 2][j + size / 2] = rows[i][j];
-      }
-    }
-  }
-
-  return grid;
+  const result = ((x + 1) * (y + 1)) - grid.size;
+  return result;
 }
 
-const getElvesCoordinates = (grid: Grid): Elf[] => {
-
-  const elves: Elf[] = [];
-
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[0].length; j++) {
-      const char = grid[i][j];
-      if (char === '#') {
-        elves.push({ x: j, y: i });
-      }
-    }
-  }
-
-  return elves;
-}
-
-const getProposedMoves = (elf: Elf) => {
-
-  const moves: Elf[] = []
-
-  moves.push({ direction: 'N', x: elf.x, y: elf.y - 1 });
-  moves.push({ direction: 'S', x: elf.x, y: elf.y + 1 });
-  moves.push({ direction: 'E', x: elf.x + 1, y: elf.y });
-  moves.push({ direction: 'W', x: elf.x - 1, y: elf.y });
-  moves.push({ direction: 'NE', x: elf.x + 1, y: elf.y - 1 });
-  moves.push({ direction: 'NW', x: elf.x - 1, y: elf.y - 1 });
-  moves.push({ direction: 'SE', x: elf.x + 1, y: elf.y + 1 });
-  moves.push({ direction: 'SW', x: elf.x - 1, y: elf.y + 1 });
-
-  return moves;
-}
-
-const isVoid = (elf: Elf, grid: Grid) => grid?.[elf.y]?.[elf.x] === undefined;
-const isElf = (elf: Elf, grid: Grid) => !isVoid(elf, grid) && grid?.[elf.y]?.[elf.x] === '#';
-const isNotElfOrVoid = (elf: Elf, grid: Grid) => !(isVoid(elf, grid) || isElf(elf, grid));
-const getNeighbours = (moves: Elf[], grid: Grid) => moves.filter(move => isElf(move, grid));
 const rotateConditions = (conditions: Direction[]) => { conditions.push(conditions.shift()); return conditions };
-const transposeArray = (array: string[][]): string[][] => array[0].map((_: any, colIndex: any) => array.map((row: any) => row[colIndex]));
 
-const getRectangle = (grid: Grid) => {
+const getDirection = (neighbours: Grid, conditionOrder: Direction[]) => {
+  const north = !neighbours.has('N') && !neighbours.has('NE') && !neighbours.has('NW');
+  const south = !neighbours.has('S') && !neighbours.has('SE') && !neighbours.has('SW');
+  const west = !neighbours.has('W') && !neighbours.has('NW') && !neighbours.has('SW');
+  const east = !neighbours.has('E') && !neighbours.has('NE') && !neighbours.has('SE');
 
-  const transposedGrid = transposeArray(grid);
-
-  const minX = transposedGrid.findIndex(row => row.includes('#'));
-  const maxX = transposedGrid.map(row => row.includes('#')).lastIndexOf(true);
-  const minY = grid.findIndex(row => row.includes('#'));
-  const maxY = grid.map(row => row.includes('#')).lastIndexOf(true);
-
-  let rectangle: string[][] = [];
-
-  for (let i = minY; i <= maxY; i++) {
-    rectangle.push(grid[i].slice(minX, maxX + 1));
-  }
-
-  return rectangle;
-}
-
-const getDirection = (elf: Elf, moves: Elf[], grid: Grid, conditionOrder: Direction[]): Elf => {
-  const N = moves.find(move => move.direction === 'N');
-  const S = moves.find(move => move.direction === 'S');
-  const E = moves.find(move => move.direction === 'E');
-  const W = moves.find(move => move.direction === 'W');
-  const NE = moves.find(move => move.direction === 'NE');
-  const NW = moves.find(move => move.direction === 'NW');
-  const SE = moves.find(move => move.direction === 'SE');
-  const SW = moves.find(move => move.direction === 'SW');
-
-  // N S W E
-  // S W E N
-  // W E N S
-  // E N S W
-
-  const north = isNotElfOrVoid(N, grid) && isNotElfOrVoid(NE, grid) && isNotElfOrVoid(NW, grid);
-  const south = isNotElfOrVoid(S, grid) && isNotElfOrVoid(SE, grid) && isNotElfOrVoid(SW, grid);
-  const west = isNotElfOrVoid(W, grid) && isNotElfOrVoid(NW, grid) && isNotElfOrVoid(SW, grid);
-  const east = isNotElfOrVoid(E, grid) && isNotElfOrVoid(NE, grid) && isNotElfOrVoid(SE, grid)
-
-  let conditions: Record<any, any> = {
-    'N': { condition: north, direction: { direction: 'N', x: elf.x, y: elf.y - 1 } },
-    'S': { condition: south, direction: { direction: 'S', x: elf.x, y: elf.y + 1 } },
-    'W': { condition: west, direction: { direction: 'W', x: elf.x - 1, y: elf.y } },
-    'E': { condition: east, direction: { direction: 'E', x: elf.x + 1, y: elf.y } }
+  const conditions: Record<string, any> = {
+    'N': { condition: north },
+    'S': { condition: south },
+    'W': { condition: west },
+    'E': { condition: east }
   };
 
-  // first conditions
-  if (conditions[conditionOrder[0]].condition) return conditions[conditionOrder[0]].direction;
-  else if (conditions[conditionOrder[1]].condition) return conditions[conditionOrder[1]].direction;
-  else if (conditions[conditionOrder[2]].condition) return conditions[conditionOrder[2]].direction;
-  else if (conditions[conditionOrder[3]].condition) return conditions[conditionOrder[3]].direction;
+  if (conditions[conditionOrder[0]].condition) return conditionOrder[0];
+  else if (conditions[conditionOrder[1]].condition) return conditionOrder[1];
+  else if (conditions[conditionOrder[2]].condition) return conditionOrder[2];
+  else if (conditions[conditionOrder[3]].condition) return conditionOrder[3];
 }
 
-const move = (grid: Grid, directions: [Elf, Elf, number][]) => {
+const move = (grid: Grid, directions: [string, string, number][]) => {
 
   for (const [elf, direction] of directions) {
-
-    // update old location
-    grid[elf.y][elf.x] = '.'
-
-    // set new location
-    grid[direction.y][direction.x] = '#';
+    grid.delete(elf);
+    grid.set(direction, '#');
   }
 
   return grid;
 }
 
-const simulate = (grid: Grid, partTwo = false) => {
+const simulate = (elves: Grid, partTwo = false) => {
   let i = 1;
   let conditionsOrder: Direction[] = ['N', 'S', 'W', 'E'];
 
@@ -148,31 +69,36 @@ const simulate = (grid: Grid, partTwo = false) => {
       break;
     }
 
-    const directions: [Elf, Elf, number][] = []
-    const elves = getElvesCoordinates(grid);
+    const directions: [string, string, number][] = [];
+    let elvesList = elves.entries();
 
     // first half of round
-    for (const elf of elves) {
-
-      // get elf proposed moves
-      const proposedMoves = getProposedMoves(elf);
+    for (const [elf] of elvesList) {
 
       // get neighbours
-      const neighbours = getNeighbours(proposedMoves, grid);
+      const neighbours = getNeighbours(elves, elf);
 
       // if no neighbours, skip this one
-      if (!neighbours || neighbours.length === 0) {
+      if (!neighbours || neighbours.size === 0) {
         continue;
       }
 
-      const proposedDirection = getDirection(elf, proposedMoves, grid, conditionsOrder);
-      const visitedDirection = directions.find(dir => dir[1]?.x === proposedDirection?.x && dir[1]?.y === proposedDirection?.y);
+      const proposedDirection = getDirection(neighbours, conditionsOrder);
+
+      // if elf cannot move N|S|E|W then skip 
+      if (!proposedDirection) {
+        continue
+      }
+
+      const proposedMove = getCoordinate(elf, proposedDirection);
+      const visitedDirection = directions.find(move => move[1] === proposedMove);
       const index = directions.indexOf(visitedDirection);
 
+
       if (!visitedDirection) {
-        directions.push([elf, proposedDirection, 1]);
+        directions.push([elf, proposedMove, 1]);
       } else {
-        directions[index] = [elf, proposedDirection, directions[index][2] + 1];
+        directions[index] = [elf, proposedMove, directions[index][2] + 1];
       }
     }
 
@@ -189,39 +115,34 @@ const simulate = (grid: Grid, partTwo = false) => {
     }
 
     // move elves
-    grid = move(grid, uniqueDirections);
+    elves = move(elves, uniqueDirections);
 
     // end of move
     conditionsOrder = rotateConditions(conditionsOrder);
     i++;
   }
+
+  return elves;
 }
 
 export const solveOne = async () => {
 
   // raw input
   const input = await getInput(getYear(__filename), getDay(__filename));
-  let grid = initGrid(input);
+  const elves = getElvesCoordinates(input);
 
   // simulate elf movements
-  simulate(grid);
+  const endGrid = simulate(elves) as Grid;
 
-  const rectangle = getRectangle(grid);
-  const emptySpaces = rectangle.flat(3).filter(spot => spot === '.').length;
-
-  return emptySpaces;
+  return getNumberOfEmptySpaces(endGrid);
 }
 
 export const solveTwo = async () => {
 
   // raw input
   const input = await getInput(getYear(__filename), getDay(__filename));
+  const elves = getElvesCoordinates(input);
 
-  // let grid = initGrid(input);
-
-  // // simulate elf movements
-  // const n = simulate(grid, true);
-
-  // console.log(n);
-
+  // simulate elf movements
+  return simulate(elves, true);
 }
