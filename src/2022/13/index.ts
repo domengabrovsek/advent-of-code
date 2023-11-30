@@ -17,7 +17,7 @@ const parsePairs = (input: string) => {
   }
 
   return pairs;
-}
+};
 
 const compareObjects = (left: any, right: any) => left && right && JSON.stringify(left) === JSON.stringify(right);
 
@@ -27,14 +27,14 @@ const calculateDecoderKey = (pairs: number[], dividerPacketOne: number[][], divi
     .sort((left, right) => {
       const result = compare(left, right);
       return result === undefined ? 0 : result ? -1 : 1;
-    })
+    });
 
   const decoderKey = [dividerPacketOne, dividerPacketTwo]
     .reduce((a: number, b: number[][]) => a * (1 + packets
       .findIndex(p => compareObjects(p, b))), 1);
 
   return decoderKey;
-}
+};
 
 const compare = (left: any, right: any): boolean | undefined => {
 
@@ -66,23 +66,23 @@ const compare = (left: any, right: any): boolean | undefined => {
       return result;
     }
   }
-}
+};
 
 export const solveOne = (input: string) => {
 
   const pairs = parsePairs(input);
   const correctPairIndices: number[] = [];
 
-  for (let [index, pair] of pairs.entries()) {
+  for (const [index, pair] of pairs.entries()) {
     const [left, right] = pair;
     if (compare(left, right)) {
-      correctPairIndices.push(index + 1)
+      correctPairIndices.push(index + 1);
     }
   }
 
   const sum = correctPairIndices.reduce((a, b) => a + b, 0);
   return sum;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -91,4 +91,4 @@ export const solveTwo = (input: string) => {
   const dividerPacketTwo = [[6]];
   const decoderKey = calculateDecoderKey(pairs, dividerPacketOne, dividerPacketTwo);
   return decoderKey;
-}
+};

@@ -27,15 +27,15 @@ const getTargetArea = (input: string): TargetArea => {
     .flatMap(part => part.split('..'))
     .map(Number);
 
-  return { x1, x2, y1, y2 }
-}
+  return { x1, x2, y1, y2 };
+};
 
 const isInTargetArea = (targetArea: TargetArea, probe: Probe): boolean => {
   return probe.x >= targetArea.x1 &&
     probe.x <= targetArea.x2 &&
     probe.y >= targetArea.y1 &&
     probe.y <= targetArea.y2;
-}
+};
 
 const isTooFar = (targetArea: TargetArea, probe: Probe): boolean => {
 
@@ -49,17 +49,17 @@ const isTooFar = (targetArea: TargetArea, probe: Probe): boolean => {
   // console.log('no');
 
   return false;
-}
+};
 
 const applySpeedModifier = (speed: number) => {
   if (speed > 0) return speed - 1;
   if (speed < 0) return speed + 1;
   if (speed === 0) return speed;
-}
+};
 
 const shootProbe = (velocityX: number, velocityY: number, targetArea: TargetArea) => {
   const probe: Probe = { x: 0, y: 0 };
-  const velocity: Velocity = { x: velocityX, y: velocityY }
+  const velocity: Velocity = { x: velocityX, y: velocityY };
 
   let maxHeight = 0;
 
@@ -67,10 +67,10 @@ const shootProbe = (velocityX: number, velocityY: number, targetArea: TargetArea
   while (true) {
 
     // move into X direction
-    probe.x += velocity.x
+    probe.x += velocity.x;
 
     // move into Y direction
-    probe.y += velocity.y
+    probe.y += velocity.y;
 
     // save max height
     if (probe.y > maxHeight) {
@@ -78,7 +78,7 @@ const shootProbe = (velocityX: number, velocityY: number, targetArea: TargetArea
     }
 
     // apply drag
-    velocity.x = applySpeedModifier(velocity.x)
+    velocity.x = applySpeedModifier(velocity.x);
 
     // apply gravity
     velocity.y -= 1;
@@ -91,7 +91,7 @@ const shootProbe = (velocityX: number, velocityY: number, targetArea: TargetArea
       return;
     }
   }
-}
+};
 
 export const solveOne = async () => {
 
@@ -112,7 +112,7 @@ export const solveOne = async () => {
   }
 
   return maxHeight;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -121,7 +121,7 @@ export const solveTwo = async () => {
 
   const targetArea = getTargetArea(input);
 
-  let results = [];
+  const results = [];
 
   for (let x = 0; x < 1000; x++) {
     for (let y = -1000; y < 1000; y++) {
@@ -133,4 +133,4 @@ export const solveTwo = async () => {
   }
 
   return results.length;
-}
+};

@@ -16,7 +16,7 @@ const parseInput = (input: string) => {
       conditionTrue: parseInt(rows.shift().match(/\d{1,3}/)[0]),
       conditionFalse: parseInt(rows.shift().match(/\d{1,3}/)[0]),
       itemsInspected: 0
-    }
+    };
 
     monkeys.push(monkey);
 
@@ -25,7 +25,7 @@ const parseInput = (input: string) => {
   }
 
   return monkeys;
-}
+};
 
 const applyOperation = (item: number, operation: string, param: string) => {
 
@@ -37,7 +37,7 @@ const applyOperation = (item: number, operation: string, param: string) => {
     case '+': return item += value;
     case '-': return item -= value;
   }
-}
+};
 
 export const solveOne = (input: string) => {
 
@@ -45,7 +45,7 @@ export const solveOne = (input: string) => {
   const rounds = 20;
 
   for (let i = 0; i < rounds; i++) {
-    for (let monkey of monkeys) {
+    for (const monkey of monkeys) {
 
       if (monkey.startingItems.length === 0) {
         continue;
@@ -58,18 +58,18 @@ export const solveOne = (input: string) => {
         const op = monkey.operation[1];
         const param = monkey.operation[2];
         return applyOperation(item, op, param);
-      })
+      });
 
       // update worry level (divide by 3 and round down)
       monkey.startingItems = monkey.startingItems.map(item => {
         return Math.floor(item /= 3);
-      })
+      });
 
       // check worry level with test and decide where to throw the item
       monkey.startingItems.forEach(item => {
         const throwDestionation = item % monkey.test === 0 ? monkey.conditionTrue : monkey.conditionFalse;
         monkeys[throwDestionation].startingItems.push(item);
-      })
+      });
 
       monkey.startingItems = [];
     }
@@ -83,7 +83,7 @@ export const solveOne = (input: string) => {
     .reduce((a, b) => a * b, 1);
 
   return monkeyBusiness;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -92,7 +92,7 @@ export const solveTwo = (input: string) => {
   const mod = monkeys.reduce((a, b) => a * b.test, 1);
 
   for (let i = 1; i <= rounds; i++) {
-    for (let monkey of monkeys) {
+    for (const monkey of monkeys) {
 
       if (monkey.startingItems.length === 0) {
         continue;
@@ -105,18 +105,18 @@ export const solveTwo = (input: string) => {
         const op = monkey.operation[1];
         const param = monkey.operation[2];
         return applyOperation(item, op, param);
-      })
+      });
 
       // update worry level (divide by 3 and round down)
       monkey.startingItems = monkey.startingItems.map(item => {
         return Math.floor(item %= mod);
-      })
+      });
 
       // check worry level with test and decide where to throw the item
       monkey.startingItems.forEach(item => {
         const throwDestionation = item % monkey.test === 0 ? monkey.conditionTrue : monkey.conditionFalse;
         monkeys[throwDestionation].startingItems.push(item);
-      })
+      });
 
       monkey.startingItems = [];
     }
@@ -130,4 +130,4 @@ export const solveTwo = (input: string) => {
     .reduce((a, b) => a * b, 1);
 
   return monkeyBusiness;
-}
+};

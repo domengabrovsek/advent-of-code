@@ -1,7 +1,7 @@
 /* This file contains solution for AoC puzzle day 6 */
 
 const solve = (input: any, size: number) => {
-  let packet: string[] = [];
+  const packet: string[] = [];
 
   for (let i = 0; i < input.length; i++) {
     const char = input[i];
@@ -16,12 +16,12 @@ const solve = (input: any, size: number) => {
     }
     packet.push(char);
   }
-}
+};
 
 export const solveOne = (input: string) => {
   return solve(input, 4);
-}
+};
 
 export const solveTwo = (input: string) => {
   return solve(input, 14);
-}
+};

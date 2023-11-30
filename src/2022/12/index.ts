@@ -1,8 +1,8 @@
 /* This file contains solution for AoC puzzle day 12 */
 
 const BFS = (grid: number[][], end: [number, number], ...start: [number, number][]) => {
-  const queue = start.map(start => ({ coordinate: start, cost: 0 }))
-  const visited = new Map<number, Set<number>>()
+  const queue = start.map(start => ({ coordinate: start, cost: 0 }));
+  const visited = new Map<number, Set<number>>();
 
   while (queue[0].coordinate[0] !== end[0] || queue[0].coordinate[1] !== end[1]) {
     const { coordinate: [x, y], cost } = queue.shift();
@@ -21,17 +21,17 @@ const BFS = (grid: number[][], end: [number, number], ...start: [number, number]
 
     for (const adjacent of adjacents) {
       if (!(adjacent[0] < 0 || adjacent[0] >= grid.length || adjacent[1] < 0 || adjacent[1] >= grid[0].length || grid[adjacent[0]][adjacent[1]] > grid[x][y] + 1)) {
-        queue.push({ coordinate: [adjacent[0], adjacent[1]], cost: cost + 1 })
+        queue.push({ coordinate: [adjacent[0], adjacent[1]], cost: cost + 1 });
       }
     }
   }
 
   return queue.shift().cost;
-}
+};
 
 const initGrid = (input: string) => {
   const rows = input.split('\n');
-  let grid: number[][] = [];
+  const grid: number[][] = [];
   let start: [number, number];
   let end: [number, number];
 
@@ -43,10 +43,10 @@ const initGrid = (input: string) => {
 
       if (char === 'S') {
         start = [i, j];
-        grid[i][j] = 1
+        grid[i][j] = 1;
       } else if (char === 'E') {
         end = [i, j];
-        grid[i][j] = 26
+        grid[i][j] = 26;
       } else {
         grid[i][j] = char.charCodeAt(0) - 96;
       }
@@ -54,7 +54,7 @@ const initGrid = (input: string) => {
   }
 
   return { grid, start, end };
-}
+};
 
 
 export const solveOne = (input: string) => {
@@ -63,13 +63,13 @@ export const solveOne = (input: string) => {
   const result = BFS(grid, end, start);
 
   return result;
-}
+};
 
 export const solveTwo = (input: string) => {
 
   const { grid, start, end } = initGrid(input);
 
-  const starts: [number, number][] = []
+  const starts: [number, number][] = [];
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] === 1) {
@@ -81,4 +81,4 @@ export const solveTwo = (input: string) => {
   const result = BFS(grid, end, ...starts);
 
   return result;
-}
+};

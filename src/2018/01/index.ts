@@ -8,7 +8,7 @@ export const solveOne = (input: string) => {
   const sum = numbers.reduce((sum, curr) => sum + curr, 0);
 
   return sum;
-}
+};
 
 export const solveTwo = (input: string) => {
   // parse input to get numbers
@@ -45,4 +45,4 @@ export const solveTwo = (input: string) => {
       }
     }
   }
-}
+};

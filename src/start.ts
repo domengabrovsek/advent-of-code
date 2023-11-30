@@ -62,7 +62,7 @@ const fetchInstructions = async (year: string, day: string) => {
   } catch (error) {
     return `Error: ${error.message}`;
   }
-}
+};
 
 // fetch input from AoC API and save it to file
 const fetchInput = async (year: string, day: string) => {
@@ -138,7 +138,7 @@ const readInputFromCLI = () => {
   }
 
   return { year: formattedYear, day: formattedDay };
-}
+};
 
 // start the program
 const start = async () => {
@@ -180,8 +180,8 @@ const start = async () => {
   console.log(`Solving day ${day} year ${year} part two.`);
   const resultTwo = solveTwo(input);
   console.log('Result:', resultTwo);
-}
+};
 
 (async () => {
   await start();
-})()
+})();

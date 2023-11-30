@@ -22,7 +22,7 @@ const createPaper = (dots: any): any => {
   }
 
   return paper;
-}
+};
 
 const countMarkedDots = (paper: any) => paper.flatMap((x: any) => x).filter((x: any) => x === '#').length;
 
@@ -45,7 +45,7 @@ const flipY = (paper: any, value: any): any => {
   }
 
   return merged;
-}
+};
 
 const flipX = (paper: any, value: any): any => {
 
@@ -66,12 +66,12 @@ const flipX = (paper: any, value: any): any => {
   }
 
   return merged;
-}
+};
 
 const flip = (paper: any, value: any, direction: any) => {
   if (direction === 'x') { return flipX(paper, value); }
   if (direction === 'y') { return flipY(paper, value); }
-}
+};
 
 export const solveOne = async () => {
 
@@ -96,7 +96,7 @@ export const solveOne = async () => {
       return countMarkedDots(paper);
     }
   }
-}
+};
 
 export const solveTwo = async () => {
 
@@ -130,4 +130,4 @@ export const solveTwo = async () => {
 
   // reads as ABKJFBGC
   console.table(paper);
-}
+};

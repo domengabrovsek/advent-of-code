@@ -33,7 +33,7 @@ export const solveOne = async () => {
   });
 
   return currentDepth * currentPosition;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -57,15 +57,15 @@ export const solveTwo = async () => {
         break;
       }
       case 'down': {
-        currentAim += value
+        currentAim += value;
         break;
       }
       case 'up': {
-        currentAim -= value
+        currentAim -= value;
         break;
       }
     }
   });
 
   return currentDepth * currentPosition;
-}
+};

@@ -5,7 +5,7 @@ const prepareStacks = (rows: any) => {
   const stacks: any = {};
 
   for (let i = 1; i < startingPosition.length * 4; i += 4) {
-    let stack = []
+    let stack = [];
     for (let j = 0; j < startingPosition[0].length; j++) {
       const value = startingPosition?.[j]?.[i];
       if (value && value !== ' ') {
@@ -19,7 +19,7 @@ const prepareStacks = (rows: any) => {
   }
 
   return stacks;
-}
+};
 
 const prepareMoves = (rows: any) => rows.slice(10, rows.length).map((x: any) => x.match(/\d{1,2}/gm));
 
@@ -29,17 +29,17 @@ const moveCargo = (stacks: any, quantity: number, from: number, to: number) => {
 
   for (let i = 0; i < quantity; i++) {
     const value = fromStack.pop();
-    toStack.push(value)
+    toStack.push(value);
   }
-}
+};
 
 const moveCargo2 = (stacks: any, quantity: number, from: number, to: number) => {
   const fromStack = stacks[from];
   const toStack = stacks[to];
 
   const value = fromStack.splice(fromStack.length - quantity, quantity);
-  toStack.push(...value)
-}
+  toStack.push(...value);
+};
 
 export const solveOne = (input: string) => {
 
@@ -48,7 +48,7 @@ export const solveOne = (input: string) => {
   const stacks = prepareStacks(rows);
   const moves = prepareMoves(rows);
 
-  for (let move of moves) {
+  for (const move of moves) {
     const [quantity, from, to] = move;
     moveCargo(stacks, quantity, from, to);
   }
@@ -56,7 +56,7 @@ export const solveOne = (input: string) => {
   const tops = Object.keys(stacks).map((key: any) => stacks[key].pop()).join('');
 
   return tops;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -65,7 +65,7 @@ export const solveTwo = (input: string) => {
   const stacks = prepareStacks(rows);
   const moves = prepareMoves(rows);
 
-  for (let move of moves) {
+  for (const move of moves) {
     const [quantity, from, to] = move;
     moveCargo2(stacks, quantity, from, to);
   }
@@ -73,4 +73,4 @@ export const solveTwo = (input: string) => {
   const tops = Object.keys(stacks).map((key: any) => stacks[key].pop()).join('');
 
   return tops;
-}
+};

@@ -11,7 +11,7 @@ const readYearFromCLI = () => {
   }
 
   return year;
-}
+};
 
 // setup the initial structure for a year
 const setup = (year: number) => {
@@ -31,7 +31,7 @@ const setup = (year: number) => {
       mkdirSync(`src/${year}/${day}`);
     }
   }
-}
+};
 
 // read year from CLI argument
 const year = readYearFromCLI();

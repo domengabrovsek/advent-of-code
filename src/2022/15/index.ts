@@ -8,14 +8,14 @@ interface Device {
 
 const getManhattanDistance = (a: [number, number], b: [number, number]) => {
   return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
-}
+};
 
 const parseInput = (input: string) => {
 
   const rows = input.split('\n');
   const devices: Device[] = [];
 
-  for (let row of rows) {
+  for (const row of rows) {
     const sensor = row.split(':')[0].split(' ').slice(2, 4).map(coordinate => coordinate.split('=')[1]).map(coordinate => coordinate.replace(',', '')).map(coordinate => parseInt(coordinate)) as [number, number];
     const beacon = row.split(':')[1].split(' ').slice(5, 7).map(coordinate => coordinate.split('=')[1]).map(coordinate => coordinate.replace(',', '')).map(coordinate => parseInt(coordinate)) as [number, number];
     const distance = getManhattanDistance(sensor, beacon);
@@ -24,11 +24,11 @@ const parseInput = (input: string) => {
   }
 
   return devices;
-}
+};
 
 const initGrid = () => {
 
-  const grid: string[][] = []
+  const grid: string[][] = [];
 
   for (let i = 0; i < 50; i++) {
     grid[i] = [];
@@ -38,7 +38,7 @@ const initGrid = () => {
   }
 
   return grid;
-}
+};
 
 const drawLocations = (sensor: [number, number], sensorDistance: number, grid: string[][]) => {
 
@@ -53,16 +53,16 @@ const drawLocations = (sensor: [number, number], sensorDistance: number, grid: s
       }
     }
   }
-}
+};
 
 const drawDevices = (sensor: [number, number], beacon: [number, number], grid: string[][]) => {
 
   // draw beacon
-  grid[beacon[1]][beacon[0]] = 'B'
+  grid[beacon[1]][beacon[0]] = 'B';
 
   // draw sensor
-  grid[sensor[1]][sensor[0]] = 'S'
-}
+  grid[sensor[1]][sensor[0]] = 'S';
+};
 
 const isOutOfRange = (x: number, y: number, devices: Device[]) => {
 
@@ -76,7 +76,7 @@ const isOutOfRange = (x: number, y: number, devices: Device[]) => {
 
 export const solveOne = (input: string) => {
 
-  const devices = parseInput(input)
+  const devices = parseInput(input);
   const row = 2000000;
 
   let count = 1;
@@ -92,31 +92,31 @@ export const solveOne = (input: string) => {
     for (let i = sensor[0] - distance; i <= sensor[0] + distance; i++) {
       if (!visited.has(i) && Math.abs(sensor[0] - i) + Math.abs(sensor[1] - row) <= distance) {
         visited.add(i);
-        count++
+        count++;
       }
     }
   }
 
   return count;
-}
+};
 
 export const solveTwo = (input: string) => {
 
   const devices = parseInput(input);
   const coords = 4000000;
 
-  for (let device of devices) {
+  for (const device of devices) {
     const { sensor, distance } = device;
-    for (let xo of [-1, 1]) {
-      for (let yo of [-1, 1]) {
+    for (const xo of [-1, 1]) {
+      for (const yo of [-1, 1]) {
         for (let i = 0; i <= distance + 1; i++) {
           const x = sensor[0] + i * xo;
           const y = sensor[1] + (distance + 1 - i) * yo;
           if (x >= 0 && y >= 0 && x <= coords && y <= coords && isOutOfRange(x, y, devices)) {
-            return x * coords + y
+            return x * coords + y;
           }
         }
       }
     }
   }
-}
+};

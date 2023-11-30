@@ -8,7 +8,7 @@ export const solveOne = async () => {
   const input = await getInput(getYear(__filename), getDay(__filename));
 
   // TODO: Implement part one
-}
+};
 
 export const solveTwo = async () => {
 
@@ -16,4 +16,4 @@ export const solveTwo = async () => {
   const input = await getInput(getYear(__filename), getDay(__filename));
 
   // TODO: Implement part two
-}
+};

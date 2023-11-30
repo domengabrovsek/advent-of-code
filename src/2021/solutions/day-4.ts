@@ -3,7 +3,7 @@
 import { deepCopy, getYear, getDay, getInput } from '../../utils/utils';
 
 const prepareBoards = (input: any) => {
-  let boards = [];
+  const boards = [];
   let board = [];
   for (let i = 0; i < input.length; i++) {
 
@@ -22,7 +22,7 @@ const prepareBoards = (input: any) => {
     }
   }
   return boards;
-}
+};
 
 const isBingo = (board: any) => {
   // check rows
@@ -50,7 +50,7 @@ const isBingo = (board: any) => {
   }
 
   return false;
-}
+};
 
 export const solveOne = async () => {
 
@@ -97,7 +97,7 @@ export const solveOne = async () => {
       .reduce((x: any, y: any) => x + y, 0);
 
   return sumOfUnmarkedNumbers * guess;
-}
+};
 
 
 export const solveTwo = async () => {
@@ -145,4 +145,4 @@ export const solveTwo = async () => {
      .reduce((x: any, y: any) => x + y, 0);
 
  return sumOfUnmarkedNumbers * guess;
-}
+};

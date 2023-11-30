@@ -2,8 +2,8 @@
 
 const initGrid = () => {
 
-  let size = 10000;
-  let grid: string[][] = [];
+  const size = 10000;
+  const grid: string[][] = [];
 
   for (let i = 0; i < size; i++) {
     grid[i] = [];
@@ -13,45 +13,45 @@ const initGrid = () => {
   }
 
   return grid;
-}
+};
 
 const drawLine = (a: [number, number], b: [number, number], grid: string[][]) => {
 
   // vertical line
   if (a[0] === b[0]) {
     for (let i = Math.min(a[1], b[1]); i <= Math.max(a[1], b[1]); i++) {
-      grid[i][a[0]] = '#'
+      grid[i][a[0]] = '#';
     }
   }
 
   // horizontal line
   if (a[1] === b[1]) {
     for (let i = Math.min(a[0], b[0]); i <= Math.max(a[0], b[0]); i++) {
-      grid[a[1]][i] = '#'
+      grid[a[1]][i] = '#';
     }
   }
-}
+};
 
 const drawLines = (lines: any, grid: any) => {
   lines.forEach((line: any) => {
     drawLine(line[0], line[1], grid);
-  })
-}
+  });
+};
 
 const getMinIndex = (lines: any) => {
   return (Math.min(...lines.map((line: any) => [line[0][0], line[1][0]]).flat(2))) - 1000;
-}
+};
 
 const getMaxIndex = (lines: any) => {
-  return Math.max(...lines.map((line: any) => [line[0][1], line[1][1]]).flat(2))
-}
+  return Math.max(...lines.map((line: any) => [line[0][1], line[1][1]]).flat(2));
+};
 
 const parseLines = (input: string) => {
 
   const lines: any = [];
   const rows = input.split('\n').map(row => row.split(' -> '));
 
-  for (let row of rows) {
+  for (const row of rows) {
     for (let i = 0; i < row.length; i++) {
       if (row[i + 1]) {
 
@@ -66,13 +66,13 @@ const parseLines = (input: string) => {
   const minIndex = getMinIndex(lines);
   const maxIndex = getMaxIndex(lines);
 
-  for (let row of lines) {
+  for (const row of lines) {
     row[0][0] = row[0][0] - minIndex;
     row[1][0] = row[1][0] - minIndex;
   }
 
   return { lines, minIndex, maxIndex };
-}
+};
 
 const newSand = (sandPoint: any, grid: any) => {
 
@@ -81,7 +81,7 @@ const newSand = (sandPoint: any, grid: any) => {
 
   while (true) {
 
-    let [x, y] = currentPosition;
+    const [x, y] = currentPosition;
 
     // falls into the void
     if (!grid?.[x + 1]?.[y] || !grid?.[x + 1]?.[y - 1] || !grid?.[x + 1]?.[y + 1]) {
@@ -91,37 +91,37 @@ const newSand = (sandPoint: any, grid: any) => {
     // below
     else if (grid[x + 1][y] === '.') {
       grid[x + 1][y] = 'O';
-      grid[x][y] = '.'
+      grid[x][y] = '.';
       currentPosition = [x + 1, y];
     }
     // below left
     else if (grid[x + 1][y - 1] === '.') {
-      grid[x + 1][y - 1] = 'O'
-      grid[x][y] = '.'
+      grid[x + 1][y - 1] = 'O';
+      grid[x][y] = '.';
       currentPosition = [x + 1, y - 1];
     }
     // below right
     else if (grid[x + 1][y + 1] === '.') {
       grid[x + 1][y + 1] = 'O';
-      grid[x][y] = '.'
+      grid[x][y] = '.';
       currentPosition = [x + 1, y + 1];
     } else {
       currentPosition = sandPoint;
       numberOfSands++;
     }
   }
-}
+};
 
 const newSand2 = (sandPoint: any, grid: any, floor: any) => {
 
-  let [sandPointX, sandPointY] = sandPoint;
+  const [sandPointX, sandPointY] = sandPoint;
   let currentPosition = [sandPointX, sandPointY + 1];
   let numberOfSands = 0;
   let lastLine: number;
 
   while (true) {
 
-    let [x, y] = currentPosition;
+    const [x, y] = currentPosition;
 
     if (lastLine === 0) {
       return numberOfSands;
@@ -130,19 +130,19 @@ const newSand2 = (sandPoint: any, grid: any, floor: any) => {
     // below
     if (grid[x + 1][y] === '.') {
       grid[x + 1][y] = 'O';
-      grid[x][y] = '.'
+      grid[x][y] = '.';
       currentPosition = [x + 1, y];
     }
     // below left
     else if (grid[x + 1][y - 1] === '.') {
-      grid[x + 1][y - 1] = 'O'
-      grid[x][y] = '.'
+      grid[x + 1][y - 1] = 'O';
+      grid[x][y] = '.';
       currentPosition = [x + 1, y - 1];
     }
     // below right
     else if (grid[x + 1][y + 1] === '.') {
       grid[x + 1][y + 1] = 'O';
-      grid[x][y] = '.'
+      grid[x][y] = '.';
       currentPosition = [x + 1, y + 1];
     } else {
       currentPosition = sandPoint;
@@ -150,7 +150,7 @@ const newSand2 = (sandPoint: any, grid: any, floor: any) => {
       lastLine = x;
     }
   }
-}
+};
 
 export const solveOne = (input: string) => {
 
@@ -167,7 +167,7 @@ export const solveOne = (input: string) => {
   const numberOfSands = newSand(sandPoint, grid);
 
   return numberOfSands;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -188,4 +188,4 @@ export const solveTwo = (input: string) => {
   // console.table(grid);
   const numberOfSands = newSand2(sandPoint, grid, floor);
   return numberOfSands;
-}
+};

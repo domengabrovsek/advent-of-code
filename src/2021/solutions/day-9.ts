@@ -23,7 +23,7 @@ const getLowPoints = (input: any) => {
   }
 
   return lowPoints;
-}
+};
 
 export const solveOne = async () => {
 
@@ -33,7 +33,7 @@ export const solveOne = async () => {
 
   const lowPoints = getLowPoints(parsedInput);
   return lowPoints.map(x => x.value).reduce((x, y) => x + y, 0) + lowPoints.length;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -117,4 +117,4 @@ export const solveTwo = async () => {
   const basinsLength = basinSizes.length;
 
   return basinSizes[basinsLength - 1] * basinSizes[basinsLength - 2] * basinSizes[basinsLength - 3];
-}
+};

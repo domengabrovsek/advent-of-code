@@ -8,29 +8,29 @@ const generateAlphabet = () => {
   const lower = alpha.map((x) => ({ letter: String.fromCharCode(x), priority: x - 38 }));
   const upper = lower.map((x) => ({ letter: x.letter.toLowerCase(), priority: x.priority - 26 }));
 
-  [...lower, ...upper].forEach(x => alphabet[x.letter] = x.priority)
+  [...lower, ...upper].forEach(x => alphabet[x.letter] = x.priority);
 
   return alphabet;
-}
+};
 
 export const solveOne = (input: string) => {
 
   const getCommonLetter = (first: any, second: any) => {
-    for (let item1 of first) {
-      for (let item2 of second) {
+    for (const item1 of first) {
+      for (const item2 of second) {
         if (item1 === item2) {
           return item1;
         }
       }
     }
-  }
+  };
 
   const rows = input.split('\n');
-  const alphabet = generateAlphabet()
+  const alphabet = generateAlphabet();
 
   let sum = 0;
 
-  for (let row of rows) {
+  for (const row of rows) {
 
     const firstPart = row.slice(0, row.length / 2);
     const secondPart = row.slice(row.length / 2, row.length);
@@ -40,24 +40,24 @@ export const solveOne = (input: string) => {
   }
 
   return sum;
-}
+};
 
 export const solveTwo = (input: string) => {
 
   const getCommonLetter = (first: any, second: any, third: any) => {
-    for (let item1 of first) {
-      for (let item2 of second) {
+    for (const item1 of first) {
+      for (const item2 of second) {
         if (item1 == item2) {
-          for (let item3 of third) {
+          for (const item3 of third) {
             if (item3 == item1) return item3;
           }
         }
       }
     }
-  }
+  };
 
   const rows = input.split('\n');
-  const alphabet = generateAlphabet()
+  const alphabet = generateAlphabet();
 
   let sum = 0;
 
@@ -71,4 +71,4 @@ export const solveTwo = (input: string) => {
   }
 
   return sum;
-}
+};

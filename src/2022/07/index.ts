@@ -3,12 +3,12 @@
 const getDirectories = (input: string) => {
   const lines = input.split('\n')
     .filter(line => !line.startsWith('$ ls'))
-    .filter(line => !line.startsWith('dir'))
+    .filter(line => !line.startsWith('dir'));
 
-  const directories: Record<string, number> = {}
+  const directories: Record<string, number> = {};
   const current: string[] = [];
 
-  for (let line of lines) {
+  for (const line of lines) {
 
     const [a, b, c] = line.split(' ');
 
@@ -29,14 +29,14 @@ const getDirectories = (input: string) => {
   }
 
   return directories;
-}
+};
 
 
 export const solveOne = (input: string) => {
 
   const directories = getDirectories(input);
   return Array.from(Object.values(directories)).filter(sum => sum <= 100000).reduce((a, b) => a + b, 0);
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -45,4 +45,4 @@ export const solveTwo = (input: string) => {
   return Array.from(Object.values(directories))
     .filter(sum => sum >= 30000000 - (70000000 - directories['/']))
     .sort()[0];
-}
+};

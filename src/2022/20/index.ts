@@ -20,7 +20,7 @@ export const solveOne = (input: string) => {
   const result = indexes.reduce((a, b) => a + items[(b + zeroIndex) % items.length].number, 0);
 
   return result;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -46,4 +46,4 @@ export const solveTwo = (input: string) => {
   const result = indexes.reduce((a, b) => a + items[(b + zeroIndex) % items.length].number, 0);
 
   return result;
-}
+};

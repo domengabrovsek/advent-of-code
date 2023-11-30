@@ -19,7 +19,7 @@ const initScreen = () => {
   }
 
   return grid;
-}
+};
 
 const getCoordinate = (cycle: number): Point => {
 
@@ -46,11 +46,11 @@ const getCoordinate = (cycle: number): Point => {
   if (cycle >= 201 && cycle <= 240) {
     return { x: 5, y: cycle - 200 - 1 };
   }
-}
+};
 
 const drawPixel = (point: Point, screen: string[][]) => {
   screen[point.x][point.y] = '#';
-}
+};
 
 export const solveOne = (input: string) => {
 
@@ -59,7 +59,7 @@ export const solveOne = (input: string) => {
   // starting value of register X
   let x = 1;
   let cycle = 0;
-  let sums: number[] = []
+  const sums: number[] = [];
 
   const cyclesToCheck = [20, 60, 100, 140, 180, 220];
 
@@ -102,7 +102,7 @@ export const solveOne = (input: string) => {
   }
 
   return sums.reduce((a, b) => a + b, 0);
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -116,7 +116,7 @@ export const solveTwo = (input: string) => {
   let instruction = rows.shift();
   let shouldIncrease = false;
 
-  let pointsToDraw = [];
+  const pointsToDraw = [];
 
   while (instruction) {
 
@@ -149,8 +149,8 @@ export const solveTwo = (input: string) => {
   pointsToDraw.forEach(point => drawPixel(getCoordinate(point), screen));
 
   // draw the whole screen
-  console.table(screen)
+  console.table(screen);
 
   // result as seen on the screen
   return 'RZHFGJCB';
-}
+};

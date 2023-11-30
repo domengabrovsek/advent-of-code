@@ -2,11 +2,11 @@
 
 const transpose = (matrix: any) => {
   return matrix[0].map((col: any, i: any) => matrix.map((row: any) => row[i]));
-}
+};
 
 const isOnEdge = (x: number, y: number, gridSize: number) => {
   return x === 0 || x === gridSize - 1 || y === 0 || y === gridSize - 1;
-}
+};
 
 const visibleFromLeft = (y: number, row: string[]) => {
 
@@ -21,7 +21,7 @@ const visibleFromLeft = (y: number, row: string[]) => {
   }
 
   return isHighest;
-}
+};
 
 const visibleFromRight = (y: number, row: string[]) => {
 
@@ -36,7 +36,7 @@ const visibleFromRight = (y: number, row: string[]) => {
   }
 
   return isHighest;
-}
+};
 
 const visibleFromTop = (y: number, row: string[]) => {
 
@@ -52,7 +52,7 @@ const visibleFromTop = (y: number, row: string[]) => {
   }
 
   return isHighest;
-}
+};
 
 const visibleFromBottom = (y: number, row: string[]) => {
 
@@ -68,7 +68,7 @@ const visibleFromBottom = (y: number, row: string[]) => {
   }
 
   return isHighest;
-}
+};
 
 const isVisible = (x: number, y: number, grid: string[][], transposedGrid: string[][]) => {
 
@@ -101,7 +101,7 @@ const isVisible = (x: number, y: number, grid: string[][], transposedGrid: strin
   }
 
   return false;
-}
+};
 
 const getScenicScoreLeft = (y: number, row: string[]) => {
 
@@ -118,7 +118,7 @@ const getScenicScoreLeft = (y: number, row: string[]) => {
   }
 
   return counter;
-}
+};
 
 const getScenicScoreRight = (y: number, row: string[]) => {
 
@@ -135,7 +135,7 @@ const getScenicScoreRight = (y: number, row: string[]) => {
   }
 
   return counter;
-}
+};
 
 const getScenicScoreTop = (y: number, row: string[]) => {
 
@@ -152,7 +152,7 @@ const getScenicScoreTop = (y: number, row: string[]) => {
   }
 
   return counter;
-}
+};
 
 const getScenicScoreBottom = (y: number, row: string[]) => {
 
@@ -169,7 +169,7 @@ const getScenicScoreBottom = (y: number, row: string[]) => {
   }
 
   return counter;
-}
+};
 
 const getScenicScore = (x: number, y: number, grid: string[][], transposedGrid: [][]) => {
 
@@ -182,7 +182,7 @@ const getScenicScore = (x: number, y: number, grid: string[][], transposedGrid: 
   // console.log({ x, y, left, right, top, bottom });
 
   return left * right * top * bottom;
-}
+};
 
 
 export const solveOne = (input: string) => {
@@ -200,7 +200,7 @@ export const solveOne = (input: string) => {
   }
 
   return visibleTrees.length;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -215,4 +215,4 @@ export const solveTwo = (input: string) => {
   }
 
   return (Math.max(...scenicScores));
-}
+};

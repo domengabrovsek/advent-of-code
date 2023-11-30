@@ -14,13 +14,13 @@ const parseInput = (input: string) => {
       monkeys[left] = { op1, op2, sign };
 
     } else {
-      monkeys[left] = parseInt(right)
+      monkeys[left] = parseInt(right);
     }
 
   });
 
   return monkeys;
-}
+};
 
 export const solveOne = (input: string) => {
 
@@ -28,7 +28,7 @@ export const solveOne = (input: string) => {
 
   while (true) {
 
-    for (let key of Object.keys(monkeys)) {
+    for (const key of Object.keys(monkeys)) {
       const value = monkeys[key];
 
       if (typeof value === 'number') {
@@ -49,8 +49,8 @@ export const solveOne = (input: string) => {
   }
 
   return monkeys['root'];
-}
+};
 
 export const solveTwo = (input: string) => {
-
-}
+  // TODO: implement
+};

@@ -15,11 +15,11 @@ export const getCoordinate = (position: string, direction: Direction) => {
     case 'SW': return formatCoordinates(x - 1, y + 1);
   }
 
-}
+};
 
 export const getNeighbour = (grid: Grid, position: string, direction: Direction) => {
   switch (direction) {
-    case 'N': return grid.get(getCoordinate(position, 'N'))
+    case 'N': return grid.get(getCoordinate(position, 'N'));
     case 'S': return grid.get(getCoordinate(position, 'S'));
     case 'E': return grid.get(getCoordinate(position, 'E'));
     case 'W': return grid.get(getCoordinate(position, 'W'));
@@ -28,7 +28,7 @@ export const getNeighbour = (grid: Grid, position: string, direction: Direction)
     case 'SE': return grid.get(getCoordinate(position, 'SE'));
     case 'SW': return grid.get(getCoordinate(position, 'SW'));
   }
-}
+};
 
 export const getNeighbours = (grid: Grid, position: string): Grid => {
 
@@ -40,24 +40,24 @@ export const getNeighbours = (grid: Grid, position: string): Grid => {
       if (neighbour) {
         neighbours.set(direction, neighbour);
       }
-    })
+    });
   } catch (error) {
-    console.log({ error, position })
+    console.log({ error, position });
   }
 
   return neighbours;
-}
+};
 
 export const formatCoordinates = (x: number, y: number): string => `${x}:${y}`;
 
 export const extractCoordinates = (coords: string): Position => {
   const [x, y] = coords.split(':').map(str => parseInt(str));
   return { x, y };
-}
+};
 
 export const printGrid = (grid: Grid) => {
 
-  const table: string[][] = []
+  const table: string[][] = [];
   const size = 40;
 
   // empty grid
@@ -75,7 +75,7 @@ export const printGrid = (grid: Grid) => {
       const val = grid.get(formatCoordinates(j, i));
 
       if (val) {
-        table[i + size / 2][j + size / 2] = val
+        table[i + size / 2][j + size / 2] = val;
       }
     }
   }
@@ -83,7 +83,7 @@ export const printGrid = (grid: Grid) => {
   console.table(table);
 
 
-}
+};
 
 export const initGrid = (input: string, char?: string) => {
 

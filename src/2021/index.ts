@@ -67,7 +67,7 @@ if (!day || day < 1 || day > 25) {
   const resultOne = await dict[day].solveOne();
   const resultTwo = await dict[day].solveTwo();
 
-  console.log(`Results for day ${day}:`)
+  console.log(`Results for day ${day}:`);
   console.log(`Part 1: '${resultOne}'`);
   console.log(`Part 2: '${resultTwo}'`);
 })();

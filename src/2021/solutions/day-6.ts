@@ -41,20 +41,20 @@ const solve = (input: any, days: number) => {
 
   // sum all the fish
   return fishArray.reduce((x, y) => x + y, 0);
-}
+};
 
 export const solveOne = async () => {
 
   // raw input
   const input = await getInput(getYear(__filename), getDay(__filename));
 
-  return solve(input, 80)
-}
+  return solve(input, 80);
+};
 
 export const solveTwo = async () => {
 
   // raw input
   const input = await getInput(getYear(__filename), getDay(__filename));
 
-  return solve(input, 256)
-}
+  return solve(input, 256);
+};

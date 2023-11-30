@@ -5,7 +5,7 @@ const sumCalories = (input: string[]) => {
 
   for (let i = 0; i < input.length; i++) {
 
-    let row = parseInt(input[i]);
+    const row = parseInt(input[i]);
 
     if (row) {
       current += row;
@@ -16,18 +16,18 @@ const sumCalories = (input: string[]) => {
   }
 
   return calories;
-}
+};
 
 
 export const solveOne = (input: string) => {
   const parsedInput = input.split('\n');
   const calories = sumCalories(parsedInput);
   return Math.max(...calories);
-}
+};
 
 export const solveTwo = (input: string) => {
   const parsedInput = input.split('\n');
   const calories = sumCalories(parsedInput);
   const topThree = calories.sort();
   return (topThree.pop() + topThree.pop() + topThree.pop());
-}
+};

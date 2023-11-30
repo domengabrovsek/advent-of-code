@@ -9,7 +9,7 @@ const mapChar = (char: any) => {
     case '<': return '>';
     case '[': return ']';
   }
-}
+};
 
 const median = (numbers: any) => {
   const sorted = numbers.slice().sort((a: any, b: any) => a - b);
@@ -20,7 +20,7 @@ const median = (numbers: any) => {
   }
 
   return sorted[middle];
-}
+};
 
 export const solveOne = async () => {
 
@@ -33,7 +33,7 @@ export const solveOne = async () => {
     ']': 57,
     '}': 1197,
     '>': 25137
-  }
+  };
 
   const illegalCharsFound = [];
   const corruptedLines = [];
@@ -81,7 +81,7 @@ export const solveOne = async () => {
   return illegalCharsFound
     .map(x => scoringDict[x])
     .reduce((sum, curr) => sum + curr, 0);
-}
+};
 
 export const solveTwo = async () => {
 
@@ -142,4 +142,4 @@ export const solveTwo = async () => {
   return median(missingPieces
     .map((line: any) => line
       .reduce((sum: any, char: any) => (sum * 5) + scoringDict[char], 0)));
-}
+};

@@ -13,20 +13,20 @@ const getNumberOfEmptySpaces = (grid: Grid) => {
 
   grid.forEach((val, key) => {
     const { x, y } = extractCoordinates(key);
-    if (minX > x) { minX = x };
-    if (maxX < x) { maxX = x };
-    if (minY > y) { minY = y };
-    if (maxY < y) { maxY = y };
-  })
+    if (minX > x) { minX = x; }
+    if (maxX < x) { maxX = x; }
+    if (minY > y) { minY = y; }
+    if (maxY < y) { maxY = y; }
+  });
 
   const x = maxX - minX;
   const y = maxY - minY;
 
   const result = ((x + 1) * (y + 1)) - grid.size;
   return result;
-}
+};
 
-const rotateConditions = (conditions: Direction[]) => { conditions.push(conditions.shift()); return conditions };
+const rotateConditions = (conditions: Direction[]) => { conditions.push(conditions.shift()); return conditions; };
 
 const getDirection = (neighbours: Grid, conditionOrder: Direction[]) => {
   const north = !neighbours.has('N') && !neighbours.has('NE') && !neighbours.has('NW');
@@ -45,7 +45,7 @@ const getDirection = (neighbours: Grid, conditionOrder: Direction[]) => {
   else if (conditions[conditionOrder[1]].condition) return conditionOrder[1];
   else if (conditions[conditionOrder[2]].condition) return conditionOrder[2];
   else if (conditions[conditionOrder[3]].condition) return conditionOrder[3];
-}
+};
 
 const move = (grid: Grid, directions: [string, string, number][]) => {
 
@@ -55,7 +55,7 @@ const move = (grid: Grid, directions: [string, string, number][]) => {
   }
 
   return grid;
-}
+};
 
 const simulate = (elves: Grid, partTwo = false) => {
   let i = 1;
@@ -69,7 +69,7 @@ const simulate = (elves: Grid, partTwo = false) => {
     }
 
     const directions: [string, string, number][] = [];
-    let elvesList = elves.entries();
+    const elvesList = elves.entries();
 
     // first half of round
     for (const [elf] of elvesList) {
@@ -86,7 +86,7 @@ const simulate = (elves: Grid, partTwo = false) => {
 
       // if elf cannot move N|S|E|W then skip 
       if (!proposedDirection) {
-        continue
+        continue;
       }
 
       const proposedMove = getCoordinate(elf, proposedDirection);
@@ -122,7 +122,7 @@ const simulate = (elves: Grid, partTwo = false) => {
   }
 
   return elves;
-}
+};
 
 export const solveOne = (input: string) => {
 
@@ -132,7 +132,7 @@ export const solveOne = (input: string) => {
   const endGrid = simulate(elves) as Grid;
 
   return getNumberOfEmptySpaces(endGrid);
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -141,4 +141,4 @@ export const solveTwo = (input: string) => {
 
   // simulate elf movements
   return simulate(elves, true);
-}
+};

@@ -7,13 +7,13 @@ interface Point {
 
 const visualize = (points: Point[]) => {
 
-  let gridSize = 20;
-  let grid: string[][] = [];
+  const gridSize = 20;
+  const grid: string[][] = [];
 
   for (let i = 0; i < gridSize; i++) {
     grid.push([]);
     for (let j = 0; j < gridSize; j++) {
-      grid[i][j] = '.'
+      grid[i][j] = '.';
     }
   }
 
@@ -26,16 +26,16 @@ const visualize = (points: Point[]) => {
   }
 
   console.table(grid);
-}
+};
 
 const visualizeVisited = (points: Point[]) => {
-  let gridSize = 20000;
-  let grid: string[][] = [];
+  const gridSize = 20000;
+  const grid: string[][] = [];
 
   for (let i = 0; i < gridSize; i++) {
     grid.push([]);
     for (let j = 0; j < gridSize; j++) {
-      grid[i][j] = '.'
+      grid[i][j] = '.';
     }
   }
 
@@ -45,7 +45,7 @@ const visualizeVisited = (points: Point[]) => {
 
   grid[gridSize / 2][gridSize / 2] = 'S';
   console.table(grid);
-}
+};
 
 const step = (prev: Point, curr: Point) => {
 
@@ -172,7 +172,7 @@ const step = (prev: Point, curr: Point) => {
   // ------------------------------------------------------ //
 
   return { x: curr.x, y: curr.y };
-}
+};
 
 const stepHead = (head: Point, direction: string) => {
   switch (direction) {
@@ -195,15 +195,15 @@ const stepHead = (head: Point, direction: string) => {
     default:
       break;
   }
-}
+};
 
 export const solveOne = (input: string) => {
 
   const moves = input.split('\n');
   const visitedPositions: Point[] = [];
 
-  let head: Point = { x: 10000, y: 10000 };
-  let tail: Point = { x: 10000, y: 10000 };
+  const head: Point = { x: 10000, y: 10000 };
+  const tail: Point = { x: 10000, y: 10000 };
 
   for (const move of moves) {
     const [direction, length] = move.split(' ');
@@ -220,23 +220,23 @@ export const solveOne = (input: string) => {
 
   const unique = new Set(visitedPositions.map(position => `${position.x}${position.y}`));
   return unique.size;
-}
+};
 
 export const solveTwo = (input: string) => {
 
   const moves = input.split('\n');
   const visitedPositions: Point[] = [];
 
-  let head: Point = { x: 10000, y: 10000 };
-  let knot1: Point = { x: 10000, y: 10000 };
-  let knot2: Point = { x: 10000, y: 10000 };
-  let knot3: Point = { x: 10000, y: 10000 };
-  let knot4: Point = { x: 10000, y: 10000 };
-  let knot5: Point = { x: 10000, y: 10000 };
-  let knot6: Point = { x: 10000, y: 10000 };
-  let knot7: Point = { x: 10000, y: 10000 };
-  let knot8: Point = { x: 10000, y: 10000 };
-  let knot9: Point = { x: 10000, y: 10000 };
+  const head: Point = { x: 10000, y: 10000 };
+  const knot1: Point = { x: 10000, y: 10000 };
+  const knot2: Point = { x: 10000, y: 10000 };
+  const knot3: Point = { x: 10000, y: 10000 };
+  const knot4: Point = { x: 10000, y: 10000 };
+  const knot5: Point = { x: 10000, y: 10000 };
+  const knot6: Point = { x: 10000, y: 10000 };
+  const knot7: Point = { x: 10000, y: 10000 };
+  const knot8: Point = { x: 10000, y: 10000 };
+  const knot9: Point = { x: 10000, y: 10000 };
 
   for (const move of moves) {
 
@@ -262,4 +262,4 @@ export const solveTwo = (input: string) => {
 
   const unique = new Set(visitedPositions.map(position => `${position.x}${position.y}`));
   return unique.size;
-}
+};

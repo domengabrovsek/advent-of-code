@@ -17,7 +17,7 @@ const getEpsilonRate = (gammaRate: any) => {
     .join('');
 
   return flippedBits;
-}
+};
 
 const getGammaRate = (input: any) => {
   let gammaRate = '';
@@ -32,7 +32,7 @@ const getGammaRate = (input: any) => {
   });
 
   return gammaRate;
-}
+};
 
 const getLeastCommonBit = (input: any, column: any) => {
   const bits = transposeArray(input)[column];
@@ -42,7 +42,7 @@ const getLeastCommonBit = (input: any, column: any) => {
   if (ones > zeros) { return '0'; }
   if (zeros > ones) { return '1'; }
   return '0';
-}
+};
 
 const getMostCommonBit = (input: any, column: any) => {
   const bits = transposeArray(input)[column];
@@ -52,7 +52,7 @@ const getMostCommonBit = (input: any, column: any) => {
   if (ones > zeros) { return '1'; }
   if (zeros > ones) { return '0'; }
   return '1';
-}
+};
 
 const getOxGenRate = (input: any) => {
   let numbers: any = Array.from(input);
@@ -66,7 +66,7 @@ const getOxGenRate = (input: any) => {
 
   const oxGenRate = parseInt(numbers[0].join(''), 2);
   return oxGenRate;
-}
+};
 
 const getCO2ScrubRate = (input: any) => {
   let numbers: any = Array.from(input);
@@ -79,7 +79,7 @@ const getCO2ScrubRate = (input: any) => {
   }
 
   return parseInt(numbers[0].join(''), 2);
-}
+};
 
 export const solveOne = async () => {
 
@@ -91,7 +91,7 @@ export const solveOne = async () => {
   const gammaRate = getGammaRate(transposedInput);
   const epsilonRate = getEpsilonRate(gammaRate);
   return parseInt(gammaRate, 2) * parseInt(epsilonRate, 2);
-}
+};
 
 export const solveTwo = async () => {
 
@@ -102,4 +102,4 @@ export const solveTwo = async () => {
   const oxGenRate = getOxGenRate(parsedInput);
   const CO2ScrubRate = getCO2ScrubRate(parsedInput);
   return oxGenRate * CO2ScrubRate;
-}
+};

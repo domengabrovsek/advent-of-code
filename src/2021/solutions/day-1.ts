@@ -12,7 +12,7 @@ export const solveOne = async () => {
   let previousNumber;
 
   for (let i = 0; i < parsedInput.length; i++) {
-    const number = parsedInput[i]
+    const number = parsedInput[i];
 
     if (previousNumber) {
       if (previousNumber < number) {
@@ -24,7 +24,7 @@ export const solveOne = async () => {
   }
 
   return numberOfIncreases;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -48,4 +48,4 @@ export const solveTwo = async () => {
   }
 
   return numberOfIncreases;
-}
+};

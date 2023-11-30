@@ -30,7 +30,7 @@ const getMostLeastCommonElement = (pairs: any) => {
   const leastCommon = Math.min(...Object.keys(elements).map(x => elements[x]));
 
   return { mostCommon, leastCommon };
-}
+};
 
 const getNewPairs = (pairs: any, mapInstructions: any) => {
   // we need a deep copy
@@ -47,7 +47,7 @@ const getNewPairs = (pairs: any, mapInstructions: any) => {
   }
 
   return newPairs;
-}
+};
 
 const getInitialPairs = (template: any) => {
   const pairs: any = {};
@@ -58,7 +58,7 @@ const getInitialPairs = (template: any) => {
   }
 
   return pairs;
-}
+};
 
 const getInitialMapInstructions = (dict: any) => {
   const mapInstructions: any = {};
@@ -70,7 +70,7 @@ const getInitialMapInstructions = (dict: any) => {
   }
 
   return mapInstructions;
-}
+};
 
 
 
@@ -90,7 +90,7 @@ export const solveOne = async () => {
   // initial map instructions from input
   const mapInstructions = getInitialMapInstructions(dict);
 
-  const steps = 10 
+  const steps = 10; 
 
   for (let i = 0; i < steps; i++) {
     pairs = getNewPairs(pairs, mapInstructions);
@@ -100,7 +100,7 @@ export const solveOne = async () => {
   const { mostCommon, leastCommon } = getMostLeastCommonElement(pairs);
 
   return mostCommon - leastCommon;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -128,4 +128,4 @@ export const solveTwo = async () => {
   const { mostCommon, leastCommon } = getMostLeastCommonElement(pairs);
 
   return mostCommon - leastCommon;
-}
+};

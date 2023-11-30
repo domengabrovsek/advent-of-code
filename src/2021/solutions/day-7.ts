@@ -14,7 +14,7 @@ const stepCost = (position: any, number: any, part: any) => {
   }
 
   return cost + sum;
-}
+};
 
 const getPositionsToCheck = (input: any) => {
   const inputNumbers: any = Array.from(new Set(input));
@@ -26,7 +26,7 @@ const getPositionsToCheck = (input: any) => {
     numbers.push(i);
   }
   return numbers;
-}
+};
 
 export const solveOne = async () => {
 
@@ -40,7 +40,7 @@ export const solveOne = async () => {
         .map(crab => stepCost(position, crab, 1))
         .reduce((x, y) => x + y, 0))
     );
-}
+};
 
 export const solveTwo = async () => {
 
@@ -54,4 +54,4 @@ export const solveTwo = async () => {
         .map(crab => stepCost(position, crab, 2))
         .reduce((x, y) => x + y, 0))
     );
-}
+};

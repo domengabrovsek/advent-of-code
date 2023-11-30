@@ -4,7 +4,7 @@ const parseInstructions = (instructions: string) => {
 
   const result: [string, string][] = [];
   let i = 0;
-  let current = ''
+  let current = '';
 
   while (true) {
     if (i === instructions.length) break;
@@ -25,15 +25,15 @@ const parseInstructions = (instructions: string) => {
   }
 
   return result;
-}
+};
 
 const isWall = (map: string[][], position: [number, number]) => map?.[position[0]]?.[position[1]] === '#';
 
 const isEmpty = (map: string[][], position: [number, number]) => map?.[position[0]]?.[position[1]] === '.';
 
 function getNextPosition(map: string[][], currentPosition: [number, number], currentDirection: string): [number, number] {
-  let dx = 0
-  let dy = 0
+  let dx = 0;
+  let dy = 0;
 
   switch (currentDirection) {
     case 'R': { dx = 1; break; }
@@ -42,8 +42,8 @@ function getNextPosition(map: string[][], currentPosition: [number, number], cur
     case 'D': { dy = 1; break; }
   }
 
-  let xOffset = 0
-  let yOffset = 0
+  let xOffset = 0;
+  let yOffset = 0;
   const [x, y] = currentPosition;
 
   while (true) {
@@ -57,7 +57,7 @@ function getNextPosition(map: string[][], currentPosition: [number, number], cur
     }
 
     if (isEmpty(map, position)) {
-      return [x + xOffset, y + yOffset]
+      return [x + xOffset, y + yOffset];
     }
   }
 }
@@ -79,7 +79,7 @@ const getNextDirection = (currentDirection: string, nextDirection: string) => {
     case 'DL': return 'R';
     case 'UL': return 'L';
   }
-}
+};
 
 const getFacing = (currentDirection: string) => {
   switch (currentDirection) {
@@ -88,7 +88,7 @@ const getFacing = (currentDirection: string) => {
     case 'L': return 2;
     case 'U': return 3;
   }
-}
+};
 
 const getStart = (map: string[][]): [number, number] => [map[0].findIndex(el => el === '.'), 0];
 
@@ -115,9 +115,9 @@ export const solveOne = (input: string) => {
 
   const result = (currentPosition[1] + 1) * 1000 + (currentPosition[0] + 1) * 4 + getFacing(currentDirection);
   return result;
-}
+};
 
 export const solveTwo = (input: string) => {
 
   // TODO: Implement part two
-}
+};

@@ -6,7 +6,7 @@ interface GraphNode {
   x: number,
   y: number,
   risk: number
-};
+}
 
 const getNeigbhours = (caveGraph: number[][], currentNode: GraphNode) => {
 
@@ -36,7 +36,7 @@ const getNeigbhours = (caveGraph: number[][], currentNode: GraphNode) => {
   }
 
   return neighbours;
-}
+};
 
 const getShortestPath = (graph: number[][], startNode: GraphNode, end: GraphNode) => {
 
@@ -50,7 +50,7 @@ const getShortestPath = (graph: number[][], startNode: GraphNode, end: GraphNode
     const currentNode: GraphNode = nodesToVisit.shift();
     let totalRisk = currentNode.risk;
 
-    const neighbours = getNeigbhours(graph, currentNode)
+    const neighbours = getNeigbhours(graph, currentNode);
 
     for (const neighbour of neighbours) {
 
@@ -68,21 +68,21 @@ const getShortestPath = (graph: number[][], startNode: GraphNode, end: GraphNode
       }
     }
   }
-}
+};
 
 const generateFullMap = (originalArray: number[][]) => {
 
   const originalSize = originalArray.length;
   const size = originalSize * 5;
 
-  let newMap: number[][] = [];
+  const newMap: number[][] = [];
 
   for (let i = 0; i < size; i++) {
     newMap.push([]);
     for (let j = 0; j < size; j++) {
 
       let value = originalArray[i % originalSize][j % originalSize];
-      let previousValue = newMap?.[i]?.[j - originalSize] || newMap?.[i - originalSize]?.[j];
+      const previousValue = newMap?.[i]?.[j - originalSize] || newMap?.[i - originalSize]?.[j];
 
       if (previousValue) {
         value = (previousValue + 1) > 9 ? 1 : (previousValue + 1);
@@ -93,7 +93,7 @@ const generateFullMap = (originalArray: number[][]) => {
   }
 
   return newMap;
-}
+};
 
 export const solveOne = async () => {
 
@@ -110,7 +110,7 @@ export const solveOne = async () => {
   const result = getShortestPath(caveGraph, start, end);
 
   return result;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -130,4 +130,4 @@ export const solveTwo = async () => {
   const result = getShortestPath(fullCaveGraph, start, end);
 
   return result;
-}
+};

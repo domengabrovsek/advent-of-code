@@ -13,7 +13,7 @@ const score: any = {
   'CY': 2,
   'CX': 7,
   'CZ': 6,
-}
+};
 
 // X LOSE
 // Y DRAW
@@ -28,11 +28,11 @@ const nextMove: any = {
   'CY': 'Z',
   'CX': 'Y',
   'CZ': 'X',
-}
+};
 
 export const solveOne = (input: string) => {
   return input.split('\n').reduce((sum, row) => sum + score[row.split(' ').join('')], 0);
-}
+};
 
 export const solveTwo = (input: string) => {
   return input.split('\n').reduce((sum, row) => {
@@ -40,4 +40,4 @@ export const solveTwo = (input: string) => {
     const play = `${row[0]}${myMove}`;
     return sum + score[play];
   }, 0);
-}
+};

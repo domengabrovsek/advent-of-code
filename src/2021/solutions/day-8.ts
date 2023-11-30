@@ -19,15 +19,15 @@ const decodeDigit = (digit: any, instructions: any) => {
     case '01356': return 5;
     case '013456': return 6;
   }
-}
+};
 
 const decodeDigits = (digits: any, instructions: any) => {
   return digits.split(' ').map((digit: any) => decodeDigit(digit, instructions)).join('');
-}
+};
 
 const getCommonElement = (arrays: any) => {
   return arrays.shift().filter((v: any) => arrays.every((a: any) => a.indexOf(v) !== -1));
-}
+};
 
 const decodeInstructions = (input: any) => {
   //   0:      1:      2:      3:      4:
@@ -130,7 +130,7 @@ const decodeInstructions = (input: any) => {
   dict[key] = 2;
 
   return dict;
-}
+};
 
 export const solveOne = async () => {
 
@@ -147,7 +147,7 @@ export const solveOne = async () => {
     .flatMap(digit => digit)
     .filter(digit => [2, 3, 4, 7].includes(digit.length))
     .length;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -172,4 +172,4 @@ export const solveTwo = async () => {
   });
 
   return sum;
-}
+};

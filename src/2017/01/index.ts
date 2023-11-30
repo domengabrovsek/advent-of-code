@@ -14,7 +14,7 @@ export const solveOne = (input: string) => {
   }
 
   return sum;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -30,4 +30,4 @@ export const solveTwo = (input: string) => {
   }
 
   return sum;
-}
+};

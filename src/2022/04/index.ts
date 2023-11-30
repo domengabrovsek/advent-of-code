@@ -6,8 +6,8 @@ export const solveOne = (input: string) => {
 
   let overlaps = 0;
 
-  for (let row of parsedInput) {
-    let [a, b, c, d] = row.split(',').flatMap(x => x.split('-').map(x => parseInt(x)));
+  for (const row of parsedInput) {
+    const [a, b, c, d] = row.split(',').flatMap(x => x.split('-').map(x => parseInt(x)));
 
     if ((a >= c && b <= d) || (c >= a && d <= b)) {
       overlaps += 1;
@@ -15,7 +15,7 @@ export const solveOne = (input: string) => {
   }
 
   return overlaps;
-}
+};
 
 export const solveTwo = (input: string) => {
 
@@ -23,8 +23,8 @@ export const solveTwo = (input: string) => {
 
   let overlaps = 0;
 
-  for (let row of parsedInput) {
-    let [a, b, c, d] = row.split(',').flatMap(x => x.split('-').map(x => parseInt(x)));
+  for (const row of parsedInput) {
+    const [a, b, c, d] = row.split(',').flatMap(x => x.split('-').map(x => parseInt(x)));
 
     if ((a >= c && a <= d) || (b >= c && b <= d) || (c >= a && c <= b) || (d >= a && d <= b)) {
       overlaps += 1;
@@ -32,4 +32,4 @@ export const solveTwo = (input: string) => {
   }
 
   return overlaps;
-}
+};

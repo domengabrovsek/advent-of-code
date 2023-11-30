@@ -30,7 +30,7 @@ const getAdjacentOctopuses = (x: any, y: any, input: any) => {
   adjacentOctopuses.push([x + 1, y + 1]);
 
   return adjacentOctopuses.filter(x => input?.[x[0]]?.[x[1]]);
-}
+};
 
 const flashAndCount = (input: any) => {
   let sum = 0;
@@ -45,7 +45,7 @@ const flashAndCount = (input: any) => {
   }
 
   return { sum, input };
-}
+};
 
 const allFlashed = (input: any) => {
   let totalFlashes = 0;
@@ -62,7 +62,7 @@ const allFlashed = (input: any) => {
   const totalOctopuses = input.length * input[0].length;
 
   return totalFlashes === totalOctopuses;
-}
+};
 
 export const solveOne = async () => {
 
@@ -113,13 +113,13 @@ export const solveOne = async () => {
     // flash the ones who have energy over 9 and count them
 
     const result = flashAndCount(parsedInput);
-    totalFlashes += result.sum
+    totalFlashes += result.sum;
 
     parsedInput = result.input;
   }
 
   return totalFlashes;
-}
+};
 
 export const solveTwo = async () => {
 
@@ -170,4 +170,4 @@ export const solveTwo = async () => {
       return totalSteps;
     }
   }
-}
+};
