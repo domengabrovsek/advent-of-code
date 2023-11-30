@@ -1,19 +1,44 @@
 /* This file contains solution for AoC puzzle day 1 */
 
-import { getYear, getDay, getInput } from '../../utils/utils';
+import { getInput, getYearAndDay } from '../../utils/utils';
+
+// fetch year and day from filename
+const [day, year] = getYearAndDay(__filename);
 
 export const solveOne = async () => {
 
   // raw input
-  const input = await getInput(getYear(__filename), getDay(__filename));
+  let input = await getInput(year, day);
 
-  // TODO: Implement part one
+  let sum = 0;
+  for(let i = 0; i < input.length; i++) {
+    const digitOne = input[i];
+    const digitTwo = input[(i + 1)] || input[0];
+
+    // console.log(`comparing ${digitOne} and ${digitTwo}`)
+    if(digitOne === digitTwo) {
+      sum += Number(digitOne);
+    }
+  }
+
+  return sum;
 }
 
 export const solveTwo = async () => {
 
   // raw input
-  const input = await getInput(getYear(__filename), getDay(__filename));
+  let input = await getInput(year, day);
 
-  // TODO: Implement part two
+  let sum = 0;
+  for(let i = 0; i < input.length; i++) {
+    const digitOne = input[i];
+    const digitTwo = input[(i + (input.length / 2)) % input.length];
+
+    // console.log(`comparing ${digitOne} and ${digitTwo}`)
+    if(digitOne === digitTwo) {
+      sum += Number(digitOne);
+    }
+  }
+
+  return sum;
 }

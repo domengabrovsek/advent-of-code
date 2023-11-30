@@ -6,18 +6,25 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
 export const deepCopy = (obj: object) => obj && JSON.parse(JSON.stringify(obj));
 
-export const getYear = (filename: string) => Number(filename.split('/')[6]);
+export const getYearAndDay = (filename: string): [number, number] => {
 
-export const getDay = (filename: string) => Number(filename.split('/')[8].split('-')[1].match(/\d{1,2}/)[0]);
+  const day = Number(filename.split('/').slice(-1)[0].match(/\d+/g)[0]);
+  const year = Number(filename.split('/').slice(-3)[0]);
+
+  return [day, year];
+}
 
 export const getSourceTemplate = (day: number) => `/* This file contains solution for AoC puzzle day ${day} */
 
-import { getYear, getDay, getInput } from '../../utils/utils';
+import { getInput, getYearAndDay } from '../../utils/utils';
+
+// fetch year and day from filename
+const [day, year] = getYearAndDay(__filename);
 
 export const solveOne = async () => {
 
   // raw input
-  const input = await getInput(getYear(__filename), getDay(__filename));
+  const input = await getInput(year, day);
 
   // TODO: Implement part one
 }
@@ -25,7 +32,7 @@ export const solveOne = async () => {
 export const solveTwo = async () => {
 
   // raw input
-  const input = await getInput(getYear(__filename), getDay(__filename));
+  const input = await getInput(year, day);
 
   // TODO: Implement part two
 }
