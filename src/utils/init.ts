@@ -13,6 +13,12 @@ if (!year) {
 
 const SOLUTIONS_FOLDER = `src/${year}/solutions`;
 
+// create year folder if it doesn't exist yet
+if (!existsSync(`src/${year}`)) {
+  console.log(`Creating year folder '${year}'...`);
+  mkdirSync(`src/${year}`);
+}
+
 // create solutions folder if it doesn't exist yet
 if (!existsSync(SOLUTIONS_FOLDER)) {
   console.log('Creating solutions folder...');
