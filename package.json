@@ -4,15 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "2017": "npx nodemon src/2017/index.ts",
-    "2018": "nodemon src/2018/index.ts",
-    "2019": "nodemon src/2019/index.ts",
-    "2020": "nodemon src/2020/index.ts",
-    "2021": "nodemon src/2021/index.ts",
-    "2022": "nodemon src/2022/index.ts",
     "test": "jest -t",
     "lint": "eslint . --max-warnings 0 --fix",
-    "init": "ts-node src/utils/init"
+    "setup": "ts-node src/setup",
+    "start": "ts-node src/start"
   },
   "repository": {
     "type": "git",
@@ -39,6 +34,7 @@
   "dependencies": {
     "@types/node": "^20.10.1",
     "lodash": "^4.17.21",
+    "node-html-parser": "^6.1.11",
     "typescript": "^4.9.3"
   }
 }

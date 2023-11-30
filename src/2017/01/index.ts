@@ -1,22 +1,14 @@
 /* This file contains solution for AoC puzzle day 1 */
 
-import { getInput, getYearAndDay } from '../../utils/utils';
-
-// fetch year and day from filename
-const [day, year] = getYearAndDay(__filename);
-
-export const solveOne = async () => {
-
-  // raw input
-  let input = await getInput(year, day);
+export const solveOne = (input: string) => {
 
   let sum = 0;
-  for(let i = 0; i < input.length; i++) {
+  for (let i = 0; i < input.length; i++) {
     const digitOne = input[i];
     const digitTwo = input[(i + 1)] || input[0];
 
     // console.log(`comparing ${digitOne} and ${digitTwo}`)
-    if(digitOne === digitTwo) {
+    if (digitOne === digitTwo) {
       sum += Number(digitOne);
     }
   }
@@ -24,18 +16,15 @@ export const solveOne = async () => {
   return sum;
 }
 
-export const solveTwo = async () => {
-
-  // raw input
-  let input = await getInput(year, day);
+export const solveTwo = (input: string) => {
 
   let sum = 0;
-  for(let i = 0; i < input.length; i++) {
+  for (let i = 0; i < input.length; i++) {
     const digitOne = input[i];
     const digitTwo = input[(i + (input.length / 2)) % input.length];
 
     // console.log(`comparing ${digitOne} and ${digitTwo}`)
-    if(digitOne === digitTwo) {
+    if (digitOne === digitTwo) {
       sum += Number(digitOne);
     }
   }
