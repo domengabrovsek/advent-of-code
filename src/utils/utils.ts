@@ -160,7 +160,7 @@ export const getInput = async (year: number, day: number) => {
 
     console.log(`Got input for day ${day} from AoC API!`);
 
-    const input = await result.text();
+    const input = await result.text().then(text => text.trim());
 
     // save it to file for future use
     console.log('Saving input to file ...');
