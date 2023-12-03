@@ -11,9 +11,11 @@
     "allowJs": true,
     "rootDir": "./src",
     "outDir": "./dist",
+    "typeRoots": ["./node_modules/@types", "./src/utils/types"],
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/utils/types/**/*"
   ],
   "exclude": [
     "node_modules"
