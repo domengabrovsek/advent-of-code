@@ -1,3 +1,5 @@
+/// <reference types="./utils/types/global" />
+
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 
 // load env variables

@@ -4,11 +4,17 @@
   "description": "Solutions for Advent of Code",
   "main": "index.js",
   "scripts": {
-    "test": "jest -t",
+    "test": "vitest",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "setup": "ts-node src/setup",
-    "start": "ts-node src/start"
+    "start": "ts-node -P ./tsconfig.json src/start"
+  },
+  "vitest": {
+    "globals": true,
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
   },
   "repository": {
     "type": "git",
@@ -29,7 +35,6 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-import": "^2.29.0",
-    "jest": "^27.4.2",
     "node-html-parser": "^6.1.11",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3"
