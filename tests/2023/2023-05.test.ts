@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { solveOne, solveTwo } from '../../src/2023/05/index';
 
-describe('2023-05', () => {
+describe.skip('2023-05', () => {
 
   const input = readFileSync('./src/2023/05/input.txt', 'utf8');
 

@@ -10,7 +10,7 @@ export const solveOne = (input: string) => {
 
     cards.forEach(card => {
       if (winners.includes(card)) {
-        console.log('winners include: ', { card });
+        // console.log('winners include: ', { card });
 
         if (points === 0) {
           points += 1;
